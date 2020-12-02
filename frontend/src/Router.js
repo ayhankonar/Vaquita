@@ -1,34 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import Home from './pages/Home';
-// import NotFound from './pages/NotFound';
-import {Home, NotFound, Signup, Login} from './pages'
+import Home from './components/home/Home';
+import NotFound from './components/404/NotFound.js';
 
-// const Signup = () => <h1>Signup</h1>
-// const Login = () => <h1>Login</h1>
-
-const Router = () => {
-  return (
-   <BrowserRouter>
+const Router = () => (
+  <BrowserRouter>
     <Switch>
-      <Route 
-        exact path="/" 
-        component={Home} 
-      />
-      <Route
-        exact path= "/signup"
-        component={Signup}
-      />
-      <Route
-        exact path= "/login"
-        component={Login}
-      />
+      <Route exact path="/" component={Home} />
       <Route component={NotFound} />
     </Switch>
-  </BrowserRouter> 
-  )
-  
-  }
+  </BrowserRouter>
+);
 
 export default Router;
 
