@@ -6,7 +6,7 @@ import {
   Divider,
 } from 'antd'
 // import Myservice from '../services/index'
-import {signupFn} from '../services/index'
+import {signupFn} from '../services/auth'
 
 export default function Signup({
   history

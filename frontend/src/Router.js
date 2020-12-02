@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import Home from './components/home/Home';
-// import NotFound from './components/404/NotFound.js';
 import {Home, NotFound, Signup, Login} from './pages'
+import LayoutApp from "./components/LayoutApp";
 
 const Router = () => (
   <BrowserRouter>
+  <LayoutApp>
     <Switch>
       <Route 
         exact path="/" 
@@ -21,6 +21,7 @@ const Router = () => (
       />
       <Route component={NotFound} />
     </Switch>
+    </LayoutApp>
   </BrowserRouter>
 );
 
