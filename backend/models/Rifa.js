@@ -3,7 +3,6 @@ const { Schema, model } = require("mongoose")
 const rifaSchema = new Schema(
   {
     title: String,
-<<<<<<< HEAD
     description: String,
     productPrice: Number,
     ownerID: {
@@ -22,24 +21,6 @@ const rifaSchema = new Schema(
       type: Number,
       default: 20
     },
-=======
-    product: {
-      type: Schema.Types.ObjectId,
-      ref: "Product"
-    },
-    availableTickets: {
-      type: Number,
-      default: 10
-    },
-    participants: {
-      type: Number,
-      default: 20
-    },
-    ownerID: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
->>>>>>> parent of bf6866c8... auth attempt need to keep trying
     ticketPrice: Number,
     soldTickets: [
       {

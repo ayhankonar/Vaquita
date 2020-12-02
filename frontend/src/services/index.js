@@ -12,7 +12,6 @@ const MY_SERVICE = {
     return await service.get('/');
   },
   signup: async (user) => {
-<<<<<<< HEAD
     return await service.post('/signup', user);
   },
   login: async (user) => {
@@ -20,20 +19,10 @@ const MY_SERVICE = {
   },
   logOut: async () => {
     return await service.get('/logout');
-=======
-    return await SERVICE.post('/signup', user);
-  },
-  login: async (user) => {
-    return await SERVICE.post('/login', user);
-  },
-  logOut: async () => {
-    return await SERVICE.get('/logout');
->>>>>>> parent of bf6866c8... auth attempt need to keep trying
   }
 };
 
 export default MY_SERVICE;
-<<<<<<< HEAD
 
 
 
@@ -53,5 +42,3 @@ export default MY_SERVICE;
 
 // export const loginFn = userInfo =>
 // authService.post('/login', userInfo)
-=======
->>>>>>> parent of bf6866c8... auth attempt need to keep trying
