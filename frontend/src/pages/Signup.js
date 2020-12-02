@@ -5,7 +5,8 @@ import {
   Button,
   Divider,
 } from 'antd'
-import Myservice from '../services/index'
+// import Myservice from '../services/index'
+import {signupFn} from '../services/index'
 
 export default function Signup({
   history
@@ -13,7 +14,9 @@ export default function Signup({
   const [form] = Form.useForm()
 
   async function signupProcess(values){
-    await Myservice.signup(values)
+    // await Myservice.signup(values)
+    console.log(values)
+    await signupFn(values)
     history.push('/login')
     console.log('user:', values)
   }
@@ -23,7 +26,7 @@ export default function Signup({
         <Form layout='vertical' form={form} onFinish={signupProcess}>
 
           <Form.Item 
-            name='name' 
+            name='email' 
             label='Email:'
             rules={[{required: true, message: 'Please input a valid email address'}]}
           >
