@@ -1,33 +1,35 @@
 import React, {
     createContext, 
-    useContext, 
-    useState, 
+    useState,
     useEffect
   } from 'react'
-  import { currentUserFn } from '../services/auth'
+  import {userProfileFn} from '../services/auth'
+  export const MyContext = createContext()
 
-  export const AppContext = createContext()
-
-  export const AppCtxProvider = props =>{
+  export default function Provider({children}){
     const [user, setUser] = useState(null)
-    
+
+    const setCtxUser = user => setUser(user)
+    const clearCtxUser = () => setUser(null)
+
+    // Callback para traer session info y perfil de usuario desde servicio 
     useEffect(() => {
-      async function getSessionData() {
-        const {data} = await currentUserFn()
-        login(data)
+      async function profile(){
+        const {data: {user}} = await userProfileFn()
+        setCtxUser(user)
+        console.log(user)
       }
-      getSessionData()
+      profile()
     }, [])
 
-    const login = userInfo => setUser(userInfo)
-
-    const logout = () => setUser(null)
-
-    const value = {user, login, logout}
-
+    //FUNCIONES PARA MANEJAR TODO DEL USUARIO EN EL APP, CHILDREN ES EL ROUTER
     return (
-      <AppContext.Provider {...props} value={value}/>
+      <MyContext.Provider value={{
+        user,
+        setCtxUser,
+        clearCtxUser
+      }}>
+        {children}
+      </MyContext.Provider>
     )
   }
-  //Un custom hook para evitar consumir en cada componente nuestro ctx
-  export const useContextInfo = () => useContext(AppContext)

@@ -5,10 +5,7 @@ const userSchema = new Schema(
   {
     email: String,
     name: String,
-    rifas: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Rifa'
-    }]
+    googleID: String
   },
   {
     timestamps: true,

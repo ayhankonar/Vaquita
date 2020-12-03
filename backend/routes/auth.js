@@ -25,6 +25,25 @@ router.get('/profile', isAuth, (req, res, next) => {
     .catch((err) => res.status(500).json({ err }));
 });
 
+router.get('/auth/google', passport.authenticate('google', {
+  scope: [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ]
+}))
+
+router.post('/auth/google/callback', (req,res,next) => {
+  passport.authenticate('google', (err, user, errDetails)=> {
+    if (err) return res.status(500).json({ err, errDetails })
+    if (!user) return res.status(401).json({ err, errDetails })
+
+    req.login(user, err => {
+      if (err) return res.status(500).json({ err })
+      return res.redirect(process.env.FRONTENDPOINT + '/profile')
+  })
+})(req, res, next)
+})
+
 function isAuth(req, res, next) {
   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
 }
