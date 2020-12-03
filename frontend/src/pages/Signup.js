@@ -64,6 +64,14 @@ export default function Signup({
             <Input.Password />
           </Form.Item>
 
+          <Form.Item 
+            name='password2' 
+            label='Confirmar contraseña:' 
+            rules={[{required: true, message: 'Please confirm password'}]}
+          >
+            <Input.Password />
+          </Form.Item>
+
           <Button type="primary" block htmlType="submit">
             Signup
           </Button>

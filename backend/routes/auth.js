@@ -5,9 +5,14 @@ const passport = require('../config/passport');
 const {isAuth} = require ('../middlewares/index')
 
 router.post('/signup', (req, res, next) => {
-  User.register(req.body, req.body.password)
+  const {password, password2} = req.body
+  if (password != password2){
+    return res.status(403).json({msg: 'Passwords do not match'})
+  } else {
+    User.register(req.body, req.body.password)
     .then((user) => res.status(201).json({ user }))
     .catch((err) => res.status(500).json({ err }));
+  }
 });
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {

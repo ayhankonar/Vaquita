@@ -1,15 +1,19 @@
 import React, {
   createContext, 
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react'
 import {userProfileFn} from '../services/auth'
 export const MyContext = createContext()
 
-export default function Provider({children}){
+export const Provider = props => {
   const [user, setUser] = useState(null)
 
+  //Para Login 
   const setCtxUser = user => setUser(user)
+
+  //Para Logout 
   const clearCtxUser = () => setUser(null)
 
   // Callback para traer session info y perfil de usuario desde servicio 
@@ -24,12 +28,12 @@ export default function Provider({children}){
 
   //FUNCIONES PARA MANEJAR TODO DEL USUARIO EN EL APP, CHILDREN ES EL ROUTER
   return (
-    <MyContext.Provider value={{
+    <MyContext.Provider {...props} value={{
       user,
       setCtxUser,
       clearCtxUser
-    }}>
-      {children}
-    </MyContext.Provider>
+    }}/>
   )
 }
+
+export const useContextInfo = () => useContext(MyContext)

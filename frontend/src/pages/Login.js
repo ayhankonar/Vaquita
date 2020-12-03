@@ -7,13 +7,13 @@ import {
 } from 'antd'
 
 import { loginFn } from '../services/auth'
-// import { AppContext } from '../hooks/context'
+import { useContextInfo } from '../hooks/context'
 
 // const {Title} = Typography
 
 export default function Login({history}){
   const [form] = Form.useForm()
-  // const { login } = useContextInfo()
+  const { setCtxUser } = useContextInfo()
 
   async function loginProcess(values){
     console.log(values)
@@ -21,6 +21,7 @@ export default function Login({history}){
     delete user.password
     delete user.hash
     delete user.salt
+    setCtxUser(user)
     history.push('/profile')
     console.log('userlogin:', user)
   }
