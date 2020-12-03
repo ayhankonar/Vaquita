@@ -1,7 +1,7 @@
-import React, {useState, useContext} from 'react'
+import React from 'react'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
-import { MyContext } from '../hooks/context'
+import { useContextInfo } from '../hooks/context'
 import { logoutFn } from '../services/auth'
 const { Header, Content, Footer } = Layout;
 
@@ -9,7 +9,8 @@ const { Header, Content, Footer } = Layout;
 const LayoutApp = ({ children }) => {
 
   //LEER USER
-  const { clearCtxUser, user } = useContext(MyContext)
+  // const { clearCtxUser, user } = useContext(MyContext)
+  const { clearCtxUser, user } = useContextInfo()
 
   //PARA LOGOUT
   async function handleLogout() {
@@ -27,8 +28,7 @@ const LayoutApp = ({ children }) => {
             <Link to="/">Home</Link>
           </Menu.Item>
 
-          {!user ? (
-            <>
+          {!user ? <>
               <Menu.Item key="2">
                 <Link to="/signup">Signup</Link>
               </Menu.Item>
@@ -36,18 +36,15 @@ const LayoutApp = ({ children }) => {
               <Menu.Item key="3">
                 <Link to="/login">Login</Link>
               </Menu.Item>
-            </>
-          ):(
-            <>
-              <Menu.Item key="4">
+            </> : <>
+              <Menu.Item key="2">
                 <Link to="/profile">Profile</Link>
               </Menu.Item>
 
-              <Menu.Item key="5" onClick={handleLogout}>
+              <Menu.Item key="3" onClick={handleLogout}>
                 Logout
               </Menu.Item>
-            </>
-          )}
+            </>}
           
         </Menu>
       </Header>

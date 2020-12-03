@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {Home, NotFound, Signup, Login} from './pages'
+import {Home, NotFound, Signup, Login, Profile} from './pages'
 import LayoutApp from "./components/LayoutApp";
-
-const Profile = () => {}
 
 const Router = () => (
   <BrowserRouter>
