@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Typography, Card, Button, Modal } from 'antd'
+import { Row, Typography, Card, Button, Modal } from 'antd'
 import { getAllRifas } from '../services/rifas'
 import RifaCard from '../components/RifaCard'
 

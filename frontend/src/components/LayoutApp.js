@@ -44,6 +44,10 @@ const LayoutApp = ({ children }) => {
               <Menu.Item key="3" onClick={handleLogout}>
                 Logout
               </Menu.Item>
+
+              <Menu.Item key="4">
+                <Link to="/new/rifas">Crear Rifa</Link>
+              </Menu.Item>
             </>}
           
         </Menu>
