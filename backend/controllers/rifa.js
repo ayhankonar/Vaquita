@@ -12,7 +12,7 @@ exports.createRifa = async (req, res) => {
     productPrice,
     productName,
     imageProduct,
-    ownerID,
+    ownerID
     // availableTickets,
     // totalTickets: availableTickets,
     } = req.body
@@ -27,7 +27,7 @@ exports.createRifa = async (req, res) => {
     ticketPrice,
     availableTickets,
     totalTickets: availableTickets,
-    ownerID,
+    ownerID
   })
 
   await User.findByIdAndUpdate(id, { $push: { rifas : newRifa._id } })
