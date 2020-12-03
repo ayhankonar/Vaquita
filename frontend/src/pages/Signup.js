@@ -49,8 +49,8 @@ export default function Signup({
         <Divider>
           Or
         </Divider>
-        <a href={'http://localhost:3000/auth/google/callback'}>
-          <Button block>Signup with Google</Button>
+        <a href={'http://localhost:3000/auth/google'}>
+          <Button danger block>Signup with Google</Button>
         </a>
     </div>
   );
