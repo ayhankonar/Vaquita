@@ -8,7 +8,7 @@ const {catchErrs, isAuth} = require ('../middlewares/index')
 // });
 
 //* GET home page *//
-router.get('/', getAllRifas)
+router.get('/rifas', getAllRifas)
 
 
 
