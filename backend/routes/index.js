@@ -3,9 +3,9 @@ const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa} = requir
 const {catchErrs, isAuth} = require ('../middlewares/index')
 
 
-router.get('/', (req, res, next) => {
-  res.status(200).json({ msg: 'Working' });
-});
+// router.get('/', (req, res, next) => {
+//   res.status(200).json({ msg: 'Working' });
+// });
 
 //* GET home page *//
 router.get('/', getAllRifas)
@@ -13,9 +13,9 @@ router.get('/', getAllRifas)
 
 
 //* Rifas routes *//
-router.post('/rifas/new/:rifaId', isAuth, catchErrs(createRifa))
+router.post('/rifas', isAuth, catchErrs(createRifa))
 // router.get('/rifas(:rifaId', catchErrs(getRifaDetails))
-router.put('rifas/:rifaId', isAuth, catchErrs(updateRifa))
-router.delete('rifas/:rifaId', catchErrs(deleteRifa))
+router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
+router.delete('/rifas/:rifaId', catchErrs(deleteRifa))
 
 module.exports = router;

@@ -4,7 +4,11 @@ const PLM = require('passport-local-mongoose');
 const userSchema = new Schema(
   {
     email: String,
-    name: String
+    name: String,
+    rifas: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Rifa'
+    }]
   },
   {
     timestamps: true,

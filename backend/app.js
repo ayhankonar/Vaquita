@@ -52,6 +52,6 @@ app.use('/', auth);
 app.use('/api', require('./routes/index'))
 
 // Uncomment this line for production
-// app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 
 module.exports = app;
