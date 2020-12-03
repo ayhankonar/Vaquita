@@ -55,7 +55,7 @@ const LayoutApp = ({ children }) => {
       <Content style={{ padding: '0 50px', minHeight: 'calc(100vh - 153.6px)' }}>
         <div className="site-layout-content">{children}</div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>Vaquita de la suerte 🍀 <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>
     </Layout>
   )
 }
