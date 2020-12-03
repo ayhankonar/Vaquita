@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const passport = require('../config/passport');
+const {isAuth} = require ('../middlewares/index')
 
 router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)
@@ -44,8 +45,8 @@ router.post('/auth/google/callback', (req,res,next) => {
 })(req, res, next)
 })
 
-function isAuth(req, res, next) {
-  req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
-}
+// function isAuth(req, res, next) {
+//   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
+// }
 
 module.exports = router;

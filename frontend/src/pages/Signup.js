@@ -24,6 +24,29 @@ export default function Signup({
   return (
     <div>
         <Form layout='vertical' form={form} onFinish={signupProcess}>
+          <Form.Item 
+            name='userName' 
+            label='Nombre de Usuario:'
+            rules={[{required: true, message: 'Please input a name'}]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item 
+            name='firstName' 
+            label='Nombre:'
+            rules={[{required: true, message: 'Please input a name'}]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item 
+            name='lastName' 
+            label='Apellido:'
+            rules={[{required: true, message: 'Please input a last name'}]}
+          >
+            <Input />
+          </Form.Item>
 
           <Form.Item 
             name='email' 
@@ -35,7 +58,7 @@ export default function Signup({
 
           <Form.Item 
             name='password' 
-            label='Password:' 
+            label='Contraseña:' 
             rules={[{required: true, message: 'Please input a password'}]}
           >
             <Input.Password />

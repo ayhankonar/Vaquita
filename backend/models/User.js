@@ -4,8 +4,14 @@ const PLM = require('passport-local-mongoose');
 const userSchema = new Schema(
   {
     email: String,
-    name: String,
+    userName: String,
+    firstName: String,
+    lastName: String,
     googleID: String,
+    image: {
+      type: String,
+      default: './public/images/profile.png'
+    },
     rifas: [{
       type: Schema.Types.ObjectId,
       ref: 'Rifa'

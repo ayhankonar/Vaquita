@@ -21,7 +21,7 @@ export default function Login({history}){
     delete user.password
     delete user.hash
     delete user.salt
-    history.push('/')
+    history.push('/profile')
     console.log('userlogin:', user)
   }
 

@@ -39,11 +39,11 @@ const LayoutApp = ({ children }) => {
             </>
           ):(
             <>
-              <Menu.Item key="4">
+              <Menu.Item key="2">
                 <Link to="/profile">Profile</Link>
               </Menu.Item>
 
-              <Menu.Item key="5" onClick={handleLogout}>
+              <Menu.Item key="3" onClick={handleLogout}>
                 Logout
               </Menu.Item>
             </>
