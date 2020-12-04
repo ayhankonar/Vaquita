@@ -11,6 +11,9 @@ const rifasService = axios.create({
   withCredentials: true
 })
 
+// Obtener las rifas del user
+export const getUsrRifas = () => rifasService.get('/myrifas')
+
 // Obtener todas las rifas
 export const getAllRifas = () => rifasService.get()
 
