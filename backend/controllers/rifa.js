@@ -3,6 +3,13 @@ const User = require("../models/User");
 // const mercadopago = require("../config/mercadopago")
 // const Ticket = require("../models/Ticket")
 
+exports.getUserRifas = async (req, res) => {
+  const { user: { id } } = req
+  const { rifas } = await User.findById(id).populate('rifas')
+   
+  res.status(200).json(rifas)
+}
+
 exports.createRifa = async (req, res) => {
   const {
     price: ticketPrice,
@@ -38,8 +45,8 @@ exports.createRifa = async (req, res) => {
 
 exports.getAllRifas = async (req, res) => {
   const result = await Rifa.find().populate("rifa")
-  const rifas = result.reverse()
-  res.status(200).json(rifas)
+  const allRifas = result.reverse()
+  res.status(200).json(allRifas)
 }
 
 

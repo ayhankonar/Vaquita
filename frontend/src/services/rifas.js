@@ -11,6 +11,9 @@ const rifasService = axios.create({
   withCredentials: true
 })
 
+// Obtener las rifas del user
+export const getUsrRifas = () => rifasService.get('/myrifas')
+
 // Obtener todas las rifas
 export const getAllRifas = () => rifasService.get()
 
@@ -18,7 +21,7 @@ export const getAllRifas = () => rifasService.get()
 export const getRifaDetails = id => rifasService.get(`/${id}`)
 
 // Crear una rifa
-export const createRifa = rifa => rifasService.post('', rifa)
+export const createRifa = rifa => rifasService.post('/new', rifa)
 
 // Editar una rifa
 export const editRifa = (id, rifa) => rifasService.put(`/${id}`, rifa)
