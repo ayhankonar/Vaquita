@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas } from './pages'
+import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit } from './pages'
 import LayoutApp from "./components/LayoutApp";
 
 
@@ -24,6 +24,10 @@ const Router = () => (
       <Route
         exact path= "/profile"
         component={Profile}
+      />
+      <Route
+        exact path= "/profile/edit"
+        component={ProfileEdit}
       />
        <Route
         exact path= "/new/rifas"
