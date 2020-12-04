@@ -13,7 +13,7 @@ router.get('/rifas', getAllRifas)
 
 
 //* Rifas routes *//
-router.post('/new/rifas', isAuth, catchErrs(createRifa))
+router.post('/rifas/new', isAuth, catchErrs(createRifa))
 // router.get('/rifas(:rifaId', catchErrs(getRifaDetails))
 router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
 router.delete('/rifas/:rifaId', catchErrs(deleteRifa))

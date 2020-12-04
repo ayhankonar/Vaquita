@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const { Title } = Typography
 
 
-function RifaCard({ title, productName, description, image, _id }) {
+function RifaCard({ title, productName, description, imageProduct, _id }) {
   return (
     <Card
       type="inner"
@@ -14,7 +14,7 @@ function RifaCard({ title, productName, description, image, _id }) {
       style={{ marginBottom: '8px' }}
       hoverable>
       <center>
-        <Avatar src={image} style={{ backgroundColor: 'white' }} />
+        <Avatar src={imageProduct} style={{ backgroundColor: 'white' }} />
         <Title level={4}>{productName}</Title>
       </center>
       {description}

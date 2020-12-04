@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import RifaForm from '../components/RifaForm'
 import { useContextInfo } from '../hooks/context'
 import { createRifa } from '../services/rifas'
@@ -21,6 +21,7 @@ const CreateRifa = () => {
       }
     
     return (
+   
         <div>
             <RifaForm addRifa={addRifa} />
         </div>

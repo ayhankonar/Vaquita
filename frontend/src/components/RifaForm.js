@@ -15,17 +15,17 @@ const RifaForm = ({ addRifa }) => {
 
     const rifa = {
       ...values,
-      image: img,
+      imageProduct: img,
     }
 
     const { data: newRifa } = await createRifa(rifa);
+    console.log (newRifa)
     addRifa(newRifa);
     form.resetFields()
     setImg(null)
   }
 
   async function handleUploadFile(file) {
-    // console.log(info);
     setLoading(true)
     const data = new FormData()
 
@@ -57,16 +57,24 @@ const RifaForm = ({ addRifa }) => {
 
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit}>
-      <Form.Item name="title" label="Title:">
+      <Form.Item name="title" 
+      label="Title:"
+      rules={[{required: true, message: 'Please input a title'}]}>
         <Input />
       </Form.Item>
-      <Form.Item name="description" label="Description:">
+      <Form.Item name="description" 
+      label="Description:" 
+      rules={[{required: true, message: 'Please input a description'}]}>
         <Input />
       </Form.Item>
-      <Form.Item name="productName" label="Product Name:">
+      <Form.Item name="productName" 
+      label="Product Name:"
+      rules={[{required: true, message: 'Please input a product name'}]}>
         <Input />
       </Form.Item>
-      <Form.Item name="productPrice" label="Product Price:">
+      <Form.Item name="productPrice" 
+      label="Product Price:"
+      rules={[{required: true, message: 'Please input a product price'}]}>
         <Input />
       </Form.Item>
       <Form.Item name="ticketPrice" label="Ticket Price:">

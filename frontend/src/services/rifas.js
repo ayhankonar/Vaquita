@@ -18,7 +18,7 @@ export const getAllRifas = () => rifasService.get()
 export const getRifaDetails = id => rifasService.get(`/${id}`)
 
 // Crear una rifa
-export const createRifa = rifa => rifasService.post('', rifa)
+export const createRifa = rifa => rifasService.post('/new', rifa)
 
 // Editar una rifa
 export const editRifa = (id, rifa) => rifasService.put(`/${id}`, rifa)
