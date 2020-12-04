@@ -21,7 +21,7 @@ export const Provider = props => {
     async function profile(){
       const {data: {user}} = await userProfileFn()
       setCtxUser(user)
-      console.log(user)
+      // console.log(user)
     }
     profile()
   }, [])

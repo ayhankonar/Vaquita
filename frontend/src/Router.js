@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {Home, NotFound, Signup, Login, Profile} from './pages'
+import {Home, NotFound, Signup, Login, Profile, ProfileEdit} from './pages'
 import LayoutApp from "./components/LayoutApp";
 
 const Router = () => (
@@ -22,6 +22,10 @@ const Router = () => (
       <Route
         exact path= "/profile"
         component={Profile}
+      />
+      <Route
+        exact path= "/profile/edit"
+        component={ProfileEdit}
       />
       <Route component={NotFound} />
     </Switch>

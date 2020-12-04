@@ -20,7 +20,7 @@ const LayoutApp = ({ children }) => {
 
   return (
     <Layout className="layout">
-      <Header>
+      <Header style={{position: 'fixed', zIndex: 1000, width: '100%'}}>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal">
 
@@ -49,7 +49,7 @@ const LayoutApp = ({ children }) => {
         </Menu>
       </Header>
       <br />
-      <Content style={{ padding: '0 50px', minHeight: 'calc(100vh - 153.6px)' }}>
+      <Content style={{ padding: '75px 50px 0 50px', minHeight: 'calc(100vh - 153.6px)' }}>
         <div className="site-layout-content">{children}</div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Vaquita de la suerte 🍀 <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>

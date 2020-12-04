@@ -16,14 +16,13 @@ export default function Login({history}){
   const { setCtxUser } = useContextInfo()
 
   async function loginProcess(values){
-    console.log(values)
     const {data: {user}} = await loginFn(values)
     delete user.password
     delete user.hash
     delete user.salt
     setCtxUser(user)
     history.push('/profile')
-    console.log('userlogin:', user)
+
   }
 
   return (
