@@ -15,8 +15,8 @@ router.get('/rifas', getAllRifas)
 //* Rifas routes *//
 router.get('/rifas/myrifas', isAuth, catchErrs(getUserRifas));
 router.post('/rifas/new', isAuth, catchErrs(createRifa))
-// router.get('/rifas(:rifaId', catchErrs(getRifaDetails))
+router.get('/rifas/:rifaId', catchErrs(getRifaDetails))
 router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
-router.delete('/rifas/:rifaId', catchErrs(deleteRifa))
+router.delete('/rifas/:rifaId', isAuth, catchErrs(deleteRifa))
 
 module.exports = router;
