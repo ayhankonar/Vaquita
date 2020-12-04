@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa, getUserRifas} = require ('../controllers/rifa')
+const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa, getUserRifas, boughtTicket} = require ('../controllers/rifa')
 const {catchErrs, isAuth} = require ('../middlewares/index')
 
 
@@ -18,5 +18,9 @@ router.post('/rifas/new', isAuth, catchErrs(createRifa))
 // router.get('/rifas(:rifaId', catchErrs(getRifaDetails))
 router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
 router.delete('/rifas/:rifaId', catchErrs(deleteRifa))
+
+//TICKETS
+
+router.post("/bought-ticket/:raffleId", boughtTicket)
 
 module.exports = router;
