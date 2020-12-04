@@ -75,12 +75,16 @@ const RifaForm = ({ addRifa }) => {
       <Form.Item name="productPrice" 
       label="Product Price:"
       rules={[{required: true, message: 'Please input a product price'}]}>
-        <Input />
+        <InputNumber/>
       </Form.Item>
-      <Form.Item name="ticketPrice" label="Ticket Price:">
+      <Form.Item name="ticketPrice" 
+      label="Ticket Price:"
+      rules={[{required: true, message: 'Please input a Ticket Price'}]}>
         <InputNumber />
       </Form.Item>
-      <Form.Item name="availableTickets" label="Available Tickets:">
+      <Form.Item name="availableTickets" 
+      label="Available Tickets:"
+      rules={[{required: true, message: 'Please input a Available Tickets'}]}>
         <InputNumber />
       </Form.Item>
       <Form.Item name="imageProduct" label="Image:">
