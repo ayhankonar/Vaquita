@@ -30,7 +30,5 @@ router.get('/', (req, res, next) => {
 
 // router.get('/api/product', productDetail)
 
-module.exports = router;
-
 
 module.exports = router;
