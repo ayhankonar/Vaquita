@@ -27,10 +27,10 @@ const Router = () => (
         exact path= "/profile"
         component={Profile}
       />
-      <Route
+      {/* <Route
         exact path= "/profile/edit"
         component={ProfileEdit}
-      />
+      /> */}
        <Route
         exact path= "/new/rifas"
         component={CreateRifa}
@@ -43,6 +43,10 @@ const Router = () => (
         exact path= "/rifas/:rifaId"
         component={RifaDetails}
       />
+      {/* <Route
+        exact path= "/bought-ticket/:rifaId"
+        component={buyTickets}
+      /> */}
       
       <Route component={NotFound} />
     </Switch>
