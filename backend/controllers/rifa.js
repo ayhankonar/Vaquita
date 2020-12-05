@@ -93,37 +93,37 @@ exports.deleteRifa =  async (req, res) => {
 
 ////////////
   
-// exports.boughtTicket = async (req, res) => {
-//   const { rifaId } = req.params
-//   const rifa = await Rifa.findOne({ _id: rifaId })
+exports.boughtTicket = async (req, res) => {
+  const { rifaId } = req.params
+  const rifa = await Rifa.findOne({ _id: rifaId })
 
-//   if (rifa.availableTickets === 0) {
-//     return res.redirect("/")
-//   }
-//   // 1. Generar el ticket
-//   const ticket = await Ticket.create({
-//     owner: req.user.id,
-//     rifa: rifaId
-//   })
-//   // 2. restar un ticket de la rifa
-//   // 3. Agregar el ticket a los tickets vendidos de la rifa
+  if (rifa.availableTickets === 0) {
+    return res.redirect("/")
+  }
+  // 1. Generar el ticket
+  const ticket = await Ticket.create({
+    owner: req.user.id,
+    rifa: rifaId
+  })
+  // 2. restar un ticket de la rifa
+  // 3. Agregar el ticket a los tickets vendidos de la rifa
 
-//   rifa.availableTickets -= 1
-//   rifa.soldTickets.push(ticket._id)
+  rifa.availableTickets -= 1
+  rifa.soldTickets.push(ticket._id)
 
-//   await rifa.save()
-//   // 4. Agregamos el ticket al user
-//   await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
-//   res.redirect("/profile")
-// }
+  await rifa.save()
+  // 4. Agregamos el ticket al user
+  await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
+  res.redirect("/profile")
+}
 
-// exports.endRifas = async (req, res) => {
-//   const rifas = await Rifa.find({
-//     availableTickets: 0,
-//     finished: false
-//   }).populate("product")
-//   res.render("rifa/end", { rifas })
-// }
+exports.endRifas = async (req, res) => {
+  const rifas = await Rifa.find({
+    availableTickets: 0,
+    finished: false
+  }).populate("product")
+  res.render("rifa/end", { rifas })
+}
 
 // exports.setRifaWinner = async (req, res) => {
 //   const { rifaId } = req.params

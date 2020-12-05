@@ -26,7 +26,8 @@ router.get('/logout', (req, res, next) => {
 });
 
 router.get('/profile', isAuth, (req, res, next) => {
-  User.findById(req.user._id)
+  const {userId}  = req.user._id
+  User.findById(userId)
     .then((user) => res.status(200).json({ user }))
     .catch((err) => res.status(500).json({ err }));
 });
