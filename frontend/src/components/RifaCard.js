@@ -10,7 +10,7 @@ function RifaCard({ title, productName, description, imageProduct, _id }) {
     <Card
       type="inner"
       title={title}
-      extra={<Link to={`/rifa/${_id}`}>Details</Link>}
+      extra={<Link to={`/rifas/${_id}`}>Details</Link>}
       style={{ marginBottom: '8px' }}
       hoverable>
       <center>
