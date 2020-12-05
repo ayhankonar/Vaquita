@@ -8,6 +8,9 @@ exports.updateProfile = async (req, res) => {
     firstName,
     lastName,
     googleID,
+    city,
+    country,
+    tickets,
     image
   } = req.body
   const updatedProfile = await User.findByIdAndUpdate(userId, {
@@ -16,6 +19,9 @@ exports.updateProfile = async (req, res) => {
     firstName,
     lastName,
     googleID,
+    city,
+    country,
+    tickets,    
     image
   }, {new: true})
 

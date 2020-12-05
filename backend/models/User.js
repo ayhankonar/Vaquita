@@ -17,7 +17,13 @@ const userSchema = new Schema(
     rifas: [{
       type: Schema.Types.ObjectId,
       ref: 'Rifa'
-    }]
+    }],
+    tickets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Ticket"
+      }
+    ],
   },
   {
     timestamps: true,

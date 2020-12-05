@@ -10,7 +10,7 @@ const ticketSchema = new Schema(
         type: Boolean,
         default: false
     },
-    raffle: {
+    rifa: {
       type: Schema.Types.ObjectId,
       ref: "Rifa"
     }
