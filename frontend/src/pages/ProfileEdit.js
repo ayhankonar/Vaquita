@@ -6,7 +6,7 @@ import {
   Divider,
 } from 'antd'
 // import Myservice from '../services/index'
-import {userProfileFn} from '../services/auth'
+import {userProfileEdit} from '../services/auth'
 
 export default function ProfileEdit({
   history

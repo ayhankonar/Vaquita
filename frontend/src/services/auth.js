@@ -16,12 +16,12 @@ export const loginFn = async user => {
 
 //GET CURRENT USER
 export const userProfileFn = async () => {
-  return await authService.get('/profile')
+  return await authService.get(`/profile`)
 }  
 
 //EDITAR PERFIL
-export const userProfileEdit = async (user) => {
-  return await authService.put('/profile/edit', user)
+export const userProfileEdit = async () => {
+  return await authService.put('/profile')
 }
 
 export const logoutFn = async () => {
