@@ -15,13 +15,13 @@ export const loginFn = async user => {
 }
 
 //GET CURRENT USER
-export const userProfileFn = async () => {
-  return await authService.get('/profile')
-}  
+export const userProfileFn = async (user) => {
+  return await authService.get(`/profile`, user)
+}
 
 //EDITAR PERFIL
-export const userProfileEdit = async (user) => {
-  return await authService.put('/profile/edit', user)
+export const userProfileEdit = async (id, user) => {
+  return await authService.put(`/profile/edit/${id}`, user)
 }
 
 export const logoutFn = async () => {

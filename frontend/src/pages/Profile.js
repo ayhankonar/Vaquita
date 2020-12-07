@@ -1,66 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Typography, 
   Row,
   Avatar,
   Button,
   Image,
-  Col 
+  Col
 } from 'antd'
+import {Link} from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons';
 import { useContextInfo } from '../hooks/context'
-import {userProfileFn, userProfileEdit} from '../services/auth'
+import {userProfileFn} from '../services/auth'
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph, Text } = Typography;
+
 export default function Profile() {
   const {user}  = useContextInfo()
+  const [profile, setProfile] = useState({})
+
+  useEffect(() => {
+    async function getProfile() {
+      const { data } = await userProfileFn(user._id)
+      setProfile(data);
+     
+    }
+
+    getProfile()
+  }, [])
 
   return (
     <Row>
-      {user ? (
+      {profile ? (
       <>
         <div>
           <Avatar size={128} src={<Image src={user.image}/>}/>
         </div>
         <Typography>
           <Title level={3}>
-            Welcome, {user.userName}
+            Welcome, {profile.userName}
           </Title>
 
           <Title level={5}>Username</Title>
-          <Text>{user.userName}</Text>
+          <Text>{profile.userName}</Text>
 
           <Title level={5}>Name</Title>
-          <Text>{user.firstName} {user.lastName}</Text>
+          <Text>{profile.firstName} {profile.lastName}</Text>
 
           <Title level={5}>Email</Title>
-          <Text>{user.email}</Text>
+          <Text>{profile.email}</Text>
 
           <Title level={5}>City</Title>
-          {user.city ? (
-            <Text>{user.city}</Text>
+          {profile.city ? (
+            <Text>{profile.city}</Text>
           ):(
             <Text>Edit profile to add</Text>
           )}
 
           <Title level={5}>Country</Title>
-          {user.country ? (
-            <Text>{user.country}</Text>
+          {profile.country ? (
+            <Text>{profile.country}</Text>
           ):(
             <Text>Edit profile to add</Text>
           )}
           
         </Typography>
-        <Button block>Edit Profile</Button>
+        <Link to={`/profile/edit/${profile._id}`}><Button block>Edit Profile</Button></Link>
+        
       </>
       ): (
         <Typography.Title level={3}>
           Login pls
         </Typography.Title>
       )}
-      <a href={'http://localhost:3000/profile/edit'}>
 
-      </a>
     </Row>
   )
 }

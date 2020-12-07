@@ -25,12 +25,12 @@ router.get('/logout', (req, res, next) => {
   res.status(200).json({ msg: 'Logged out' });
 });
 
-router.get('/profile', isAuth, (req, res, next) => {
-  const {userId}  = req.user._id
-  User.findById(userId)
-    .then((user) => res.status(200).json({ user }))
-    .catch((err) => res.status(500).json({ err }));
-});
+// router.get('/profile', isAuth, (req, res, next) => {
+//   const {userId}  = req.user._id
+//   User.findById(userId)
+//     .then((user) => res.status(200).json({ user }))
+//     .catch((err) => res.status(500).json({ err }));
+// });
 
 router.get('/auth/google', passport.authenticate('google', {
   scope: [
@@ -46,7 +46,7 @@ router.post('/auth/google/callback', (req,res,next) => {
 
     req.login(user, err => {
       if (err) return res.status(500).json({ err })
-      return res.redirect(process.env.FRONTENDPOINT + '/profile')
+      return res.redirect(process.env.FRONTENDPOINT + '/profile/' + user._id)
   })
 })(req, res, next)
 })

@@ -13,6 +13,9 @@ export const Provider = props => {
   //Para Login 
   const setCtxUser = user => setUser(user)
 
+  //Para REFRESCAR LOS DATOS 
+  const updateCtxUser = user => setUser(user)
+
   //Para Logout 
   const clearCtxUser = () => setUser(null)
 
@@ -31,6 +34,7 @@ export const Provider = props => {
     <MyContext.Provider {...props} value={{
       user,
       setCtxUser,
+      updateCtxUser,
       clearCtxUser
     }}/>
   )

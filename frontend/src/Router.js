@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, RifaDetails } from './pages'
+import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit, RifaDetails, EditRifa } from './pages'
 
 import LayoutApp from "./components/LayoutApp";
 
@@ -27,10 +27,10 @@ const Router = () => (
         exact path= "/profile"
         component={Profile}
       />
-      {/* <Route
-        exact path= "/profile/edit"
+      <Route
+        exact path= "/profile/edit/:id"
         component={ProfileEdit}
-      /> */}
+      />
        <Route
         exact path= "/new/rifas"
         component={CreateRifa}
@@ -42,6 +42,10 @@ const Router = () => (
        <Route
         exact path= "/rifas/:rifaId"
         component={RifaDetails}
+      />
+      <Route
+        exact path= "/rifas/edit/:rifaId"
+        component={EditRifa}
       />
       {/* <Route
         exact path= "/bought-ticket/:rifaId"
