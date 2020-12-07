@@ -35,9 +35,9 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 }
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -143,7 +143,7 @@ export default function EditRifa({
           {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
         </Upload>
       </Form.Item>
-      <Button type="primary" block size="middle" htmlType="submit">Create</Button>
+      <Button type="primary" block size="middle" htmlType="submit">Save Changes</Button>
     </Form>
   )
 }
