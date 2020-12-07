@@ -97,16 +97,18 @@ exports.deleteRifa =  async (req, res) => {
   
 exports.boughtTicket = async (req, res) => {
   const { rifaId } = req.params
+  console.log(req.user._id, "USER")
+  console.log(rifaId, "RIFAID")
   const rifa = await Rifa.findOne({ _id: rifaId })
-  console.log(rifa, "RIFA")
+  
   if (rifa.availableTickets === 0) {
     // return res.redirect("/")
     return res.status(403).json({msg: 'No more tickets'})
   }
   // 1. Generar el ticket
   const ticket = await Ticket.create({
-    owner: req.user.id,
-    rifa: rifaId
+    owner: req.user._id,
+    rifaTicket: rifaId
   })
   // 2. restar un ticket de la rifa
   // 3. Agregar el ticket a los tickets vendidos de la rifa
