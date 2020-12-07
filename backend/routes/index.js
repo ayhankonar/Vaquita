@@ -21,7 +21,7 @@ router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
 router.delete('/rifas/:rifaId', isAuth, catchErrs(deleteRifa))
 
 //TICKETS
-router.post("/bought-ticket/:raffleId", boughtTicket)
+router.post('/rifas/bought-ticket/:rifaId', boughtTicket)
 
 //MERCADOPAGO
 router.get('/', (req, res, next) => {

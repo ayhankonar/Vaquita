@@ -21,7 +21,7 @@ const RifaDetails = ({
   const [showModal, setShowModal] = useState(false)
   const [prueba, setPrueba] = useState(false)
   const [change, setChange] = useState(false)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState()
   
 
   useEffect(() => {
@@ -30,8 +30,9 @@ const RifaDetails = ({
       // console.log(rifaId, "HOLAAAAAAAAAAAAAAA")
       setRifa(data);
     }
-    function buyTix(){}
+    // function buyTix(){}
     getDetails()
+    // setChange(false)
     //RESET DE PAGINA
   }, [change])
 
@@ -50,7 +51,9 @@ const RifaDetails = ({
   
   //findbyidandupdate with patch
   async function buyTicketFn(){
+    console.log(rifaId)
     await buyTicket(rifaId)
+    setChange(!change)
   }
 
   /* REFERENCIA: DE CONTROLLERS
@@ -105,7 +108,7 @@ const RifaDetails = ({
             <Title level={4}>{productName}</Title>
             <Text>Description: {description}</Text><br/>
             <Text> Ticket Price: {productPrice}</Text><br/>
-            <Text> Available Tickets: {count}</Text><br/>
+            <Text> Available Tickets: {availableTickets}</Text><br/>
         {deUsuario ? (
           <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
         ): (
@@ -121,7 +124,8 @@ const RifaDetails = ({
         
     </Card>
     ):(
-      <Skeleton active />
+      <p>No hay tickets disponibles</p>
+      // <Skeleton active />
     )
   }
    </>) 
