@@ -101,10 +101,6 @@ exports.boughtTicket = async (req, res) => {
   console.log(rifaId, "RIFAID")
   const rifa = await Rifa.findOne({ _id: rifaId })
   
-  if (rifa.availableTickets === 0) {
-    // return res.redirect("/")
-    return res.status(403).json({msg: 'No more tickets'})
-  }
   // 1. Generar el ticket
   const ticket = await Ticket.create({
     owner: req.user._id,
@@ -112,26 +108,30 @@ exports.boughtTicket = async (req, res) => {
   })
   // 2. restar un ticket de la rifa
   // 3. Agregar el ticket a los tickets vendidos de la rifa
+  rifa.availableTickets--
   console.log(rifa.availableTickets, "AVAILABLE TICKETS")
-  rifa.availableTickets -= 1
   rifa.soldTickets.push(ticket._id)
-
+  
   await rifa.save()
   // 4. Agregamos el ticket al user
   await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
   // res.redirect("/profile")
   ////CAMBIAR ESTO ^
   res.status(200).json(ticket)
+  if (rifa.availableTickets === 0) {
+    await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
+    return res.status(403).json({msg: 'No more tickets'})
+  }
 }
 
-exports.endRifas = async (req, res) => {
-  const rifas = await Rifa.find({
-    availableTickets: 0,
-    finished: false
-  }).populate("product")
-  res.render("rifa/end", { rifas })
-  ///CAMBIAR ESTO ^^^^
-}
+// exports.endRifas = async (req, res) => {
+//   const rifas = await Rifa.find({
+//     availableTickets: 0,
+//     finished: false
+//   }).populate("product")
+//   res.render("rifa/end", { rifas })
+//   ///CAMBIAR ESTO ^^^^
+// }
 
 
 

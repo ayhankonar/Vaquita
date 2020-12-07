@@ -98,7 +98,7 @@ const RifaDetails = ({
 
   return (
     <>
-    {availableTickets ? (
+    {title ? (
     <Card
         type="inner"
         title={title}
