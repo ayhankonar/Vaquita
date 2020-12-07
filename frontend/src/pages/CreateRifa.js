@@ -3,10 +3,15 @@ import RifaForm from '../components/RifaForm'
 import { useContextInfo } from '../hooks/context'
 import { createRifa } from '../services/rifas'
 
+//Importar History
+import { useHistory } from 'react-router-dom'    
 
 const CreateRifa = () => {
     const { user } = useContextInfo()
     const [rifas, setRifas] = useState([])
+
+    //Declarar variable de history
+    const history = useHistory()
     
     // useEffect(() => {
     //     async function rifaCreate() {
@@ -18,6 +23,7 @@ const CreateRifa = () => {
 
     function addRifa(rifa) {
         setRifas([...rifas, rifa])
+        history.push('/rifas/myrifas')
       }
     
     return (

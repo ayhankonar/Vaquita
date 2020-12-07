@@ -34,7 +34,7 @@ exports.createRifa = async (req, res) => {
     ticketPrice,
     availableTickets,
     // totalTickets: availableTickets,
-    ownerID
+    ownerID: id
   })
 
   await User.findByIdAndUpdate(id, { $push: { rifas : newRifa._id } })
@@ -60,8 +60,10 @@ exports.getRifaDetails = async (req, res) => {
 exports.updateRifa = async (req, res) => {
      const { rifaId } = req.params
      const {
-        price: ticketPrice,
-        ticketQuantity: availableTickets,
+        // price: ticketPrice,
+        // ticketQuantity: availableTickets,
+        ticketPrice,
+        availableTickets,
         title,
         description,
         productPrice,

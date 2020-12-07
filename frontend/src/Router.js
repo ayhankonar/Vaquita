@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit, RifaDetails } from './pages'
+import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit, RifaDetails, EditRifa } from './pages'
 
 import LayoutApp from "./components/LayoutApp";
 
@@ -42,6 +42,10 @@ const Router = () => (
        <Route
         exact path= "/rifas/:rifaId"
         component={RifaDetails}
+      />
+      <Route
+        exact path= "/rifas/edit/:rifaId"
+        component={EditRifa}
       />
       {/* <Route
         exact path= "/bought-ticket/:rifaId"

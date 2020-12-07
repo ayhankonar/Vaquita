@@ -9,4 +9,5 @@ export {default as ProfileEdit} from './ProfileEdit'
 export {default as CreateRifa} from './CreateRifa'
 export {default as MyRifas} from './MyRifas'
 export {default as RifaDetails} from './RifaDetails'
+export {default as EditRifa} from './EditRifa'
 

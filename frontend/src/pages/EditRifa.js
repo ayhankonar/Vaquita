@@ -1,30 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Input, InputNumber, Select, Upload } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { createRifa } from '../services/rifas'
+import { useContextInfo } from '../hooks/context'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { getRifaDetails, editRifa } from '../services/rifas'
+
 
 const cloudinaryAPI = 'https://api.cloudinary.com/v1_1/dj9edroyv/image/upload'
 
-const RifaForm = ({ addRifa }) => {
-  // const { user } = useContextInfo()
+export default function EditRifa({
+  match: {
+    params: {
+      rifaId
+    }
+  }
+}){
+  const [rifa, setRifa] = useState({})
+  const { user } = useContextInfo()
   const [form] = Form.useForm()
+  const history = useHistory()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
 
-  async function handleSubmit(values) {
-
-    const rifa = {
-      ...values,
-      imageProduct: img,
-      // ownerID: user._id
+  useEffect(() => {
+    async function getDetails() {
+      const { data } = await getRifaDetails(rifaId)
+      setRifa(data);
     }
 
-    const { data: newRifa } = await createRifa(rifa);
-    console.log (newRifa)
-    addRifa(newRifa);
+    getDetails()
+  // }, [rifaId])
+  }, [])
+
+  console.log('RIFA CHECK 2', rifa)
+
+  async function handleSubmit(values) {
+
+    const editedRifaInput = {
+      ...values,
+      imageProduct: img,
+    }
+
+    console.log (editedRifaInput)
+    // const { data: editedRifa } = await editRifa(editedRifaInput);
+    // console.log (editedRifa)
     form.resetFields()
     setImg(null)
+    history.push(`/rifas/myrifas${rifaId}`)
   }
 
   async function handleUploadFile(file) {
@@ -47,46 +71,56 @@ const RifaForm = ({ addRifa }) => {
     </div>
   );
 
-//   title,
-//   description,
-//   productPrice,
-//   productName,
-//   imageProduct,
-//   ticketPrice,
-//   availableTickets,
-//   totalTickets: availableTickets,
-//   ownerID
+  //   title,
+  //   description,
+  //   productPrice,
+  //   productName,
+  //   imageProduct,
+  //   ticketPrice,
+  //   availableTickets,
+  //   totalTickets: availableTickets,
+  //   ownerID
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleSubmit}>
+    <Form form={form} layout="vertical" onFinish={handleSubmit} initialValues={
+      {
+        title: rifa.title,
+        description: rifa.description,
+        productPrice: rifa.productPrice,
+        productName: rifa.productName,
+        imageProduct: rifa.imageProduct,
+        ticketPrice: rifa.ticketPrice,
+        availableTickets: rifa.availableTickets,
+      }
+    }>
       <Form.Item name="title" 
       label="Title:"
-      rules={[{required: true, message: 'Please input a title'}]}>
+      >
         <Input />
       </Form.Item>
       <Form.Item name="description" 
       label="Description:" 
-      rules={[{required: true, message: 'Please input a description'}]}>
+      >
         <Input />
       </Form.Item>
       <Form.Item name="productName" 
       label="Product Name:"
-      rules={[{required: true, message: 'Please input a product name'}]}>
+      >
         <Input />
       </Form.Item>
       <Form.Item name="productPrice" 
       label="Product Price:"
-      rules={[{required: true, message: 'Please input a product price'}]}>
+      >
         <InputNumber/>
       </Form.Item>
       <Form.Item name="ticketPrice" 
       label="Ticket Price:"
-      rules={[{required: true, message: 'Please input a Ticket Price'}]}>
+      >
         <InputNumber />
       </Form.Item>
       <Form.Item name="availableTickets" 
       label="Available Tickets:"
-      rules={[{required: true, message: 'Please input a Available Tickets'}]}>
+      >
         <InputNumber />
       </Form.Item>
       <Form.Item name="imageProduct" label="Image:">
@@ -101,5 +135,3 @@ const RifaForm = ({ addRifa }) => {
     </Form>
   )
 }
-
-export default RifaForm

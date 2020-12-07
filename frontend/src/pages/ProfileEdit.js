@@ -18,7 +18,7 @@ const cloudinaryAPI = 'https://api.cloudinary.com/v1_1/dj9edroyv/image/upload'
 
 export default function ProfileEditForm({history}) {
   const { user } = useContextInfo()
-  const { setCtxUser } = useContextInfo()
+  const { updateCtxUser } = useContextInfo()
   
   const [form] = Form.useForm()
   const [img, setImg] = useState(null)
@@ -39,7 +39,7 @@ export default function ProfileEditForm({history}) {
     const { data: updatedUser } = await userProfileEdit(user._id, editUser);
     form.resetFields()
     setImg(null)
-    setCtxUser(updatedUser)
+    updateCtxUser(updatedUser)
     history.push('/profile')
   }
 
