@@ -3,11 +3,13 @@ import { Form, Button, Input, InputNumber, Select, Upload } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { createRifa } from '../services/rifas'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const cloudinaryAPI = 'https://api.cloudinary.com/v1_1/dj9edroyv/image/upload'
 
 const RifaForm = ({ addRifa }) => {
   const [form] = Form.useForm()
+  const history = useHistory()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
 
@@ -23,6 +25,7 @@ const RifaForm = ({ addRifa }) => {
     addRifa(newRifa);
     form.resetFields()
     setImg(null)
+    history.push('/rifas/myrifas')
   }
 
   async function handleUploadFile(file) {

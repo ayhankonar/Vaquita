@@ -16,7 +16,7 @@ exports.profileView = async (req, res, next) => {
 
 
 exports.updateProfile = async (req, res) => {
-  // const { user: { id } } = req
+  const { user: { id } } = req
   // const { userId } = req.params
   const { 
     email,
@@ -30,7 +30,8 @@ exports.updateProfile = async (req, res) => {
     rifas,
     tickets
   } = req.body
-  const updatedProfile = await User.findByIdAndUpdate(req.user._id, {
+
+  const updatedProfile = await User.findByIdAndUpdate(id, {
     email,
     userName,
     firstName,
@@ -42,6 +43,7 @@ exports.updateProfile = async (req, res) => {
     rifas,
     tickets
   }, {new: true})
+  
   res.status(200).json(updatedProfile)
 }
 
