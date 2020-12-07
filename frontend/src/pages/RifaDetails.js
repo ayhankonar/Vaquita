@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Avatar, Typography, Button, Modal } from 'antd'
+import { Card, Avatar, Typography, Button, Modal, Skeleton } from 'antd'
 import RifaEditForm from '../components/RifaEditForm'
-import { getRifaDetails } from '../services/rifas'
+import { getRifaDetails, buyTicket } from '../services/rifas'
 import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
 import {Link} from 'react-router-dom'
@@ -19,6 +19,10 @@ const RifaDetails = ({
   const [rifa, setRifa] = useState({})
   const { user } = useContextInfo()
   const [showModal, setShowModal] = useState(false)
+  const [prueba, setPrueba] = useState(false)
+  const [change, setChange] = useState(false)
+  const [count, setCount] = useState(0)
+  
 
   useEffect(() => {
     async function getDetails() {
@@ -26,9 +30,10 @@ const RifaDetails = ({
       // console.log(rifaId, "HOLAAAAAAAAAAAAAAA")
       setRifa(data);
     }
-
+    function buyTix(){}
     getDetails()
-  }, [rifaId])
+    //RESET DE PAGINA
+  }, [change])
 
   //PARA VERIFICAR SI EL USUARIO ES DUE~O DE LA RIFA Y MOSTRA BOTONES DIFERENTES
   let deUsuario = false
@@ -41,11 +46,11 @@ const RifaDetails = ({
     setRifa([...rifa,rifas])
   }
 
-  let tickets = rifa.availableTickets
-  const [count, setCount] = useState(tickets)
-  function buyTicketFn(){
-    console.log(tickets)
-    setCount(count-1)
+  
+  
+  //findbyidandupdate with patch
+  async function buyTicketFn(){
+    await buyTicket(rifaId)
   }
 
   /* REFERENCIA: DE CONTROLLERS
@@ -86,10 +91,11 @@ const RifaDetails = ({
 //     setRifa(newRifa)
 //   }
 
-  const { title, imageProduct, description, productName, productPrice } = rifa
+  const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
 
   return (
     <>
+    {availableTickets ? (
     <Card
         type="inner"
         title={title}
@@ -101,27 +107,25 @@ const RifaDetails = ({
             <Text> Ticket Price: {productPrice}</Text><br/>
             <Text> Available Tickets: {count}</Text><br/>
         {deUsuario ? (
-          <Button onClick={()=> setShowModal(true)}>Edit</Button>
+          <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
         ): (
           <Button onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
         )}        
         </center>
 
         {/* <Link></Link> */}
+        { prueba &&       
+          <RifaEditForm {...rifa} />
+        }
+        
+        
     </Card>
-    <Modal
-      visible={showModal}
-      title="Edit your Rifa"
-      onOk={() => setShowModal(false)}
-      onCancel={() => setShowModal(false)}
-    >
-      <RifaEditForm {...rifa} />
-    </Modal>
-    </>
-  ) 
-//   : (
-//       <Skeleton active />
-//     )
+    ):(
+      <Skeleton active />
+    )
+  }
+   </>) 
+ 
 }
 
 export default RifaDetails

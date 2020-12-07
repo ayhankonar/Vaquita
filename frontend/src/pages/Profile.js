@@ -16,55 +16,59 @@ const { Title, Paragraph, Text } = Typography;
 
 export default function Profile() {
   const {user}  = useContextInfo()
+  console.log(user)
   const [profile, setProfile] = useState({})
 
   useEffect(() => {
     async function getProfile() {
-      const { data } = await userProfileFn(user._id)
-      setProfile(data);
-     
+      const { data } = await userProfileFn(user?._id)
+      setProfile(data)
+      console.log(data)
     }
 
     getProfile()
   }, [])
 
   return (
-    <Row>
-      {profile ? (
+    <Col>
+      {user ? (
       <>
         <div>
-          <Avatar size={128} src={<Image src={user.image}/>}/>
+          <Avatar size={128} src={<Image src={user?.image}/>}/>
         </div>
+        <div>
         <Typography>
           <Title level={3}>
-            Welcome, {profile.userName}
+            Welcome, {user.userName}
           </Title>
 
           <Title level={5}>Username</Title>
-          <Text>{profile.userName}</Text>
+          <Text>{user.userName}</Text>
 
           <Title level={5}>Name</Title>
-          <Text>{profile.firstName} {profile.lastName}</Text>
+          <Text>{user.firstName} {user.lastName}</Text>
 
           <Title level={5}>Email</Title>
-          <Text>{profile.email}</Text>
+          <Text>{user.email}</Text>
 
           <Title level={5}>City</Title>
-          {profile.city ? (
-            <Text>{profile.city}</Text>
+          {user.city ? (
+            <Text>{user.city}</Text>
           ):(
             <Text>Edit profile to add</Text>
           )}
 
           <Title level={5}>Country</Title>
-          {profile.country ? (
-            <Text>{profile.country}</Text>
+          {user.country ? (
+            <Text>{user.country}</Text>
           ):(
             <Text>Edit profile to add</Text>
           )}
           
         </Typography>
-        <Link to={`/profile/edit/${profile._id}`}><Button block>Edit Profile</Button></Link>
+        </div>
+        <br/>
+        <Link to={`/profile/edit/${user?._id}`}><Button block>Edit Profile</Button></Link>
         
       </>
       ): (
@@ -73,6 +77,6 @@ export default function Profile() {
         </Typography.Title>
       )}
 
-    </Row>
+    </Col>
   )
 }
