@@ -52,7 +52,12 @@ const LayoutApp = ({ children }) => {
               <Menu.Item key="5">
                   <Link to="/rifas/myrifas">Mis rifas</Link>
                 </Menu.Item>
+
+              <Menu.Item key="6">
+                  <Link to="/tickets/mytickets">Mis Tickets</Link>
+                </Menu.Item>
               </>}
+
           
         </Menu>
       </Header>

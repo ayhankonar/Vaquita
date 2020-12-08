@@ -115,8 +115,8 @@ exports.boughtTicket = async (req, res) => {
   await rifa.save()
   // 4. Agregamos el ticket al user
   await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
-  // res.redirect("/profile")
-  ////CAMBIAR ESTO ^
+
+ // 5. Si hay 0 tickets, cambiamos la propiedad finished de la rifa a true
   res.status(200).json(ticket)
   if (rifa.availableTickets === 0) {
     await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
