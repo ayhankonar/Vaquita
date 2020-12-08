@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit, RifaDetails, EditRifa } from './pages'
+import {CreateRifa, Home, NotFound, Signup, Login, Profile, MyRifas, ProfileEdit, RifaDetails, EditRifa, MyTickets } from './pages'
 
 import LayoutApp from "./components/LayoutApp";
 
@@ -47,6 +47,11 @@ const Router = () => (
         exact path= "/rifas/edit/:rifaId"
         component={EditRifa}
       />
+      <Route
+        exact path= "/tickets/mytickets"
+        component={MyTickets}
+      />
+
       {/* <Route
         exact path= "/bought-ticket/:rifaId"
         component={buyTickets}

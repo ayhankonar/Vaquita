@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // const { productDetail } = require('../controllers/products')
 const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa, getUserRifas, boughtTicket} = require ('../controllers/rifa')
+const {getUserTickets} = require ('../controllers/tickets')
 const {catchErrs, isAuth} = require ('../middlewares/index')
 
 
@@ -21,7 +22,8 @@ router.put('/rifas/:rifaId', isAuth, catchErrs(updateRifa))
 router.delete('/rifas/:rifaId', isAuth, catchErrs(deleteRifa))
 
 //TICKETS
-router.post('/rifas/bought-ticket/:rifaId', boughtTicket)
+router.post('/tickets/bought-ticket/:rifaId', boughtTicket)
+router.get('/tickets/mytickets', isAuth, getUserTickets)
 
 //MERCADOPAGO
 router.get('/', (req, res, next) => {
