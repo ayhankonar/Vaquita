@@ -117,11 +117,31 @@ exports.boughtTicket = async (req, res) => {
   await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
 
  // 5. Si hay 0 tickets, cambiamos la propiedad finished de la rifa a true
-  res.status(200).json(ticket)
-  if (rifa.availableTickets === 0) {
-    await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
-    return res.status(403).json({msg: 'No more tickets'})
+ 
+ if (rifa.availableTickets === 0) {
+   await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
+   const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
+   //ObjectId de Ticket
+   const ticketWinner = rifa.soldTickets[winnerId]
+   console.log("winner:", ticketWinner)
+   //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
+   await Ticket.findByIdAndUpdate(ticketWinner, { winner: true }, {new: true})
+   //redirigir a la misma vista de end rifas
+   res.status(201).json(ticketWinner)
+   // res.status(403).json({msg: 'No more tickets'})
   }
+  res.status(200).json(ticket)
+  // if (rifa.finished === true){
+  //   //obtener a un ganador aleatorio de los soldTickets de la rifa
+  //   const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
+  //   //ObjectId de Ticket
+  //   const ticketWinner = rifa.soldTickets[winnerId]
+  //   console.log("winner:", ticketWinner)
+  //   //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
+  //   await Ticket.findByIdAndUpdate(ticketWinner, { winner: true })
+  //   //redirigir a la misma vista de end rifas
+  //   res.status(201).json(ticketWinner)
+  // }
 }
 
 // exports.endRifas = async (req, res) => {
