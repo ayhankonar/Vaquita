@@ -16,3 +16,9 @@ export const getUsrTickets = () => ticketsService.get('/mytickets')
 
 //Comprar ticket
 export const buyTicket = (id) => ticketsService.post(`/bought-ticket/${id}`)
+
+//Get rifas from user tickets
+export const getRifafromTix = () => ticketsService.get('/rifas')
+
+//Get winner rifas from user tickets
+export const getRifafromWinnerTix = () => ticketsService.get('/winner-rifas')

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { getUsrTickets } from '../services/tickets'
+import { getUsrTickets, getRifafromTix, getRifafromWinnerTix } from '../services/tickets'
 import RifaCard from '../components/RifaCard'
+import { getRifaDetails } from '../services/rifas'
 import { useContextInfo } from '../hooks/context'
 import { Row, Col, Typography, Card, Button, Modal } from 'antd'
 const { Title, Text } = Typography
@@ -8,36 +9,62 @@ const { Title, Text } = Typography
 const MyTickets = () => {
     const { user } = useContextInfo()
     const [tickets, setTickets] = useState([])
+    const [winnerTix, setWinnerTix] = useState([])
+    const [rifas, setRifas] = useState([])
+
+    // useEffect(() => {
+    //     async function getTickets() {
+    //     const { data } = await getUsrTickets()
+    //     //if ticketWinner = true
+    //     //getRifafrom 
+    //     console.log(data,"DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    //     setTickets(data);
+    //     }
+
+
+    //     getTickets()
+    // }, [])
 
     useEffect(() => {
-        async function getTickets() {
-        const { data } = await getUsrTickets()
-        console.log(data,"DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        setTickets(data);
+        async function getRifas(){
+            const { data } = await getRifafromTix()
+            console.log(data, "RIFAAAAAAS")
+            setRifas(data)
         }
 
-        getTickets()
+        getRifas()
     }, [])
 
-    function traerRifas (){
+    useEffect(() => {
+        async function getWinnerRifas(){
+            const { data } = await getRifafromWinnerTix()
+            console.log(data, "WIINNNNNNERRRRR")
+            setWinnerTix(data)
+        }
 
-    }
+        getWinnerRifas()
+    }, [])
+
+    ///////TAMBIEN AGREGAR RIFAS PENDIENTES
 
     const {winner, rifaTicket } = tickets
 
     return  (
         <div>
-          <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
-              {tickets.map(ticket => <p
-              key={ticket.id} >
-              {winner}
-              {rifaTicket}
-              </p>
-             
-             ) }
-             
-          </Row>
-        </div>
+        <h1>TESTTESTTESTTES</h1>
+        <h1>FELICIDADES, aqui estan tus rifas ganadas</h1>
+        <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+            {winnerTix.map(rifa => <RifaCard
+            key={rifa.id}
+            {...rifa}/>)}
+        </Row>
+        <hr/>
+        <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+            {rifas.map(rifa => <RifaCard
+            key={rifa.id}
+            {...rifa}/>)}
+        </Row>
+      </div>
     )
     //   ) : <>
     //   <Title level={1}>Fake</Title>
