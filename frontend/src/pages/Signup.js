@@ -15,10 +15,10 @@ export default function Signup({
 
   async function signupProcess(values){
     // await Myservice.signup(values)
-    console.log(values)
+    // console.log(values)
     await signupFn(values)
     history.push('/login')
-    console.log('user:', values)
+    // console.log('user:', values)
   }
   
   return (

@@ -32,12 +32,12 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secret: process.env.SECRET,
-    cookie: { maxAge: 1000 * 60 * 60 }
+    cookie: { maxAge: 600000000000000000000 }
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,11 +45,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(logger('dev'));
 
-const index = require('./routes/index');
-const auth = require('./routes/auth');
-app.use('/', index);
-app.use('/', auth);
+
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/auth'));
+
 app.use('/api', require('./routes/index'))
+app.use('/profile', require('./routes/user'))
 
 // Uncomment this line for production
 app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

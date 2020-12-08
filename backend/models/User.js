@@ -8,6 +8,8 @@ const userSchema = new Schema(
     firstName: String,
     lastName: String,
     googleID: String,
+    city: String,
+    country: String,
     image: {
       type: String,
       default: './public/images/profile.png'
@@ -15,7 +17,13 @@ const userSchema = new Schema(
     rifas: [{
       type: Schema.Types.ObjectId,
       ref: 'Rifa'
-    }]
+    }],
+    tickets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Ticket"
+      }
+    ],
   },
   {
     timestamps: true,
