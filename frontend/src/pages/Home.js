@@ -21,7 +21,8 @@ function Home() {
   return  (
     <div>
       <h1>Home</h1>
-      <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+      <Row style ={{flex: 1, justifyContent: "center" }}
+      gutter={[16, 16]} xs={24} sm={24} md={8}>
         {rifas.map(rifa => <RifaCard
         key={rifa.id}
         {...rifa}/>)}
