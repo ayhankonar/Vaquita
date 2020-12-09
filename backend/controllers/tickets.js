@@ -31,14 +31,16 @@ exports.getRifaFromWinnerTicket = async (req, res) => {
     let rifas = []
     // const { tickets } = await User.(id).populate('tickets')
     const tickets  = await Ticket.find({$and:[{owner: id},{winner: true}]})
-    console.log('WINNER TICKETS', tickets)
-    console.log('test')
-    for (const ticket of tickets){
-        let rifa = await Rifa.findById(ticket.rifaTicket)
-        rifas.push(rifa)
+    if (tickets){
+        res.status(403).json({message: 'No winning tickets, yet. Keep trying!'})
+    } else {
+        for (const ticket of tickets){
+            let rifa = await Rifa.findById(ticket.rifaTicket)
+            rifas.push(rifa)
+        }
+        const reversedRifas = rifas.reverse()
+        res.status(200).json(reversedRifas) 
     }
-    const reversedRifas = rifas.reverse()
-    res.status(200).json(reversedRifas)
 }
 
 exports.getRifaFromTicket = async (req, res) => {
@@ -46,12 +48,25 @@ exports.getRifaFromTicket = async (req, res) => {
     let rifas = []
     // const { tickets } = await User.(id).populate('tickets')
     const tickets = await Ticket.find({$and:[{owner: id},{winner: false}]})
-    console.log('LOSER TICKETS',tickets)
     for (const ticket of tickets){
-        let rifa = await Rifa.findById(ticket.rifaTicket)
-        rifas.push(rifa)
+        let rifa = await Rifa.findOne({$and: [{_id: ticket.rifaTicket}, {finished: false}]})
+        rifa && rifas.push(rifa)
     }
     const reversedRifas = rifas.reverse()
     res.status(200).json(reversedRifas)
 }
+
+exports.getRifaFromLostTicket = async (req, res) => {
+    const { user: {id}} = req
+    let rifas = []
+    // const { tickets } = await User.(id).populate('tickets')
+    const tickets = await Ticket.find({$and:[{owner: id},{winner: false}]})
+    for (const ticket of tickets){
+        let rifa = await Rifa.findOne({$and: [{_id: ticket.rifaTicket}, {finished: true}]})
+        rifa && rifas.push(rifa)
+    }
+    const reversedRifas = rifas.reverse()
+    res.status(200).json(reversedRifas)
+}
+
 
