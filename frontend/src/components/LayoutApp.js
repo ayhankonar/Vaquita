@@ -20,9 +20,9 @@ const LayoutApp = ({ children }) => {
 
   return (
     <Layout className="layout">
-      <Header style={{position: 'fixed', zIndex: 1000, width: '100%'}}>
+      <Header style={{position: 'fixed', zIndex: 1000, width: '100%', backgroundColor: "#bedbbb"}}>
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal">
+        <Menu style={{backgroundColor: "#bedbbb"}} theme="dark" mode="horizontal">
 
           <Menu.Item key="1">
             <Link to="/">Home</Link>

@@ -22,9 +22,11 @@ export const Provider = props => {
   // Callback para traer session info y perfil de usuario desde servicio 
   useEffect(() => {
     async function profile(){
+
       const {data} = await userProfileFn(user)
       setCtxUser(data)
       console.log(data)
+
     }
     profile()
   }, [])
