@@ -62,7 +62,7 @@ const MyTickets = () => {
         <h1>Mis Tickets</h1>
         {winnerTix && (
             <>
-                <h1>FELICIDADES, aqui estan tus rifas ganadas</h1>
+                <h1>¡Felicidades! Aquí están las rifas que has ganado</h1>
                 <Row style ={{flex: 1, justifyContent: "center" }}
                 gutter={[16, 16]} xs={24} sm={24} md={8}>
                     {winnerTix.map(rifa => <RifaCard

@@ -3,11 +3,12 @@ import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
 import { useContextInfo } from '../hooks/context'
 import { logoutFn } from '../services/auth'
+import {useHistory} from 'react-router-dom'
 const { Header, Content, Footer } = Layout;
 
 
 const LayoutApp = ({ children }) => {
-
+  let history = useHistory()
   //LEER USER
   // const { clearCtxUser, user } = useContext(MyContext)
   const { clearCtxUser, user } = useContextInfo()
@@ -15,6 +16,7 @@ const LayoutApp = ({ children }) => {
   //PARA LOGOUT
   async function handleLogout() {
     await logoutFn()
+    history.push('/login')
     clearCtxUser()
   }
 

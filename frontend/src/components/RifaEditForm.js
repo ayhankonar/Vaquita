@@ -118,21 +118,23 @@ export default function EditRifa({
         name="productPrice" 
         label="Product Price:"
       >
-        <InputNumber/>
+        <InputNumber disabled/>
       </Form.Item>
 
       <Form.Item 
         name="ticketPrice" 
         label="Ticket Price:"
+        
       >
-        <InputNumber />
+        <InputNumber disabled/>
       </Form.Item>
 
       <Form.Item 
         name="availableTickets" 
         label="Available Tickets:"
+        
       >
-        <InputNumber />
+        <InputNumber disabled/>
       </Form.Item>
       
       <Form.Item name="imageProduct" label="Image:">
