@@ -31,7 +31,8 @@ exports.getRifaFromWinnerTicket = async (req, res) => {
     let rifas = []
     // const { tickets } = await User.(id).populate('tickets')
     const tickets  = await Ticket.find({$and:[{owner: id},{winner: true}]})
-    if (tickets){
+    console.log(tickets)
+    if (!tickets){
         res.status(403).json({message: 'No winning tickets, yet. Keep trying!'})
     } else {
         for (const ticket of tickets){

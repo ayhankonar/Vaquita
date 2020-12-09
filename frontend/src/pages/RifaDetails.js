@@ -73,44 +73,6 @@ const RifaDetails = ({
     setChange(!change)
   }
 
-  /* REFERENCIA: DE CONTROLLERS
-    exports.boughtTicket = async (req, res) => {
-      const { rifaId } = req.params
-      const rifa = await Rifa.findOne({ _id: rifaId })
-      console.log(rifa, "RIFA")
-      if (rifa.availableTickets === 0) {
-        // return res.redirect("/")
-        return res.status(403).json({msg: 'No more tickets'})
-      }
-      // 1. Generar el ticket
-      const ticket = await Ticket.create({
-        owner: req.user.id,
-        rifa: rifaId
-      })
-      // 2. restar un ticket de la rifa
-      // 3. Agregar el ticket a los tickets vendidos de la rifa
-      console.log(rifa.availableTickets, "AVAILABLE TICKETS")
-      rifa.availableTickets -= 1
-      rifa.soldTickets.push(ticket._id)
-    
-      await rifa.save()
-      // 4. Agregamos el ticket al user
-      await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
-      // res.redirect("/profile")
-      ////CAMBIAR ESTO ^
-      res.status(200).json(ticket)
-    } 
-  */
-
-
-
-
-//   async function handleStatus(status) {
-//     const updatedRifa = { ...rifa, status }
-//     const { data: newRifa } = await editRifa(rifa._id, updatedRifa)
-//     setRifa(newRifa)
-//   }
-
   const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
 
   return (
@@ -126,7 +88,7 @@ const RifaDetails = ({
             <Text>Description: {description}</Text><br/>
             <Text> Ticket Price: {productPrice}</Text><br/>
             <Text> Available Tickets: {availableTickets}</Text><br/>
-        {deUsuario ?? (
+        {deUsuario && (
           <>
           <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
           <br/>
