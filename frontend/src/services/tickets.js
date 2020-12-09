@@ -22,3 +22,5 @@ export const getRifafromTix = () => ticketsService.get('/rifas')
 
 //Get winner rifas from user tickets
 export const getRifafromWinnerTix = () => ticketsService.get('/winner-rifas')
+
+export const getRifafromLostTix = () => ticketsService.get('/lost-rifas')

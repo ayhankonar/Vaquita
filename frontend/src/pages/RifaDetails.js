@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Avatar, Typography, Button, Modal, Skeleton } from 'antd'
 import RifaEditForm from '../components/RifaEditForm'
 import { getRifaDetails } from '../services/rifas'
+import { getUsrTickets, getRifafromTix, getRifafromWinnerTix, getRifafromLostTix } from '../services/tickets'
 import {buyTicket} from '../services/tickets'
 import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
@@ -23,14 +24,28 @@ const RifaDetails = ({
   const [prueba, setPrueba] = useState(false)
   const [change, setChange] = useState(false)
   const [count, setCount] = useState()
-  
+  const [buyable, setBuyable] = useState(false)
+  let previouslyBought = true
 
   useEffect(() => {
     async function getDetails() {
       const { data } = await getRifaDetails(rifaId)
-      // console.log(rifaId, "HOLAAAAAAAAAAAAAAA")
+      
+      //1.Para confirmar que el usuario no haya comprado boleto previamente
+      data.soldTickets.forEach(el => {
+        if (user && user.tickets.includes(el)){
+          return previouslyBought = true
+        }
+      })
+      
+      if (data.availableTickets > 0 && previouslyBought === false){
+        setBuyable(true)
+      } else {
+        setBuyable(false)
+      }
       setRifa(data);
     }
+
     // function buyTix(){}
     getDetails()
     // setChange(false)
@@ -54,6 +69,7 @@ const RifaDetails = ({
   async function buyTicketFn(){
     console.log(rifaId)
     await buyTicket(rifaId)
+    setBuyable(false)
     setChange(!change)
   }
 
@@ -110,11 +126,35 @@ const RifaDetails = ({
             <Text>Description: {description}</Text><br/>
             <Text> Ticket Price: {productPrice}</Text><br/>
             <Text> Available Tickets: {availableTickets}</Text><br/>
-        {deUsuario ? (
+        {deUsuario ?? (
+          <>
           <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
+          <br/>
+          </>
+        )}
+        {user ? (
+          <>
+            {buyable ? (
+              <Button onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
+            ) : (
+              <Button disabled>Comprar Boleto</Button>
+            )}
+          </>
         ): (
-          <Button onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
-        )}        
+          <>
+            <br/>
+            <Link to='/signup'>
+              <Button type="primary">Sign up to buy</Button>
+            </Link>
+            <p>or</p>
+            <Link to='/login'>
+              <Button default>Log in</Button>
+            </Link> 
+         </>
+        )}
+
+         
+        
         </center>
 
         {/* <Link></Link> */}
@@ -125,8 +165,8 @@ const RifaDetails = ({
         
     </Card>
     ):(
-      <p>No hay tickets disponibles</p>
-      // <Skeleton active />
+      // <p>No hay tickets disponibles</p>
+      <Skeleton active />
     )
   }
    </>) 

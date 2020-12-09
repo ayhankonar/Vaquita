@@ -46,7 +46,9 @@ router.post('/auth/google/callback', (req,res,next) => {
 
     req.login(user, err => {
       if (err) return res.status(500).json({ err })
-      return res.redirect(process.env.FRONTENDPOINT + '/profile/' + user._id)
+      return res.redirect(process.env.ENV === 'development' ?
+       process.env.FRONTENDPOINT + '/profile/' + user._id : '/profile/' + user._id) 
+      // return res.redirect(process.env.FRONTENDPOINT + '/profile/' + user._id)
   })
 })(req, res, next)
 })
