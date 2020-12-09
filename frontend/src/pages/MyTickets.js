@@ -58,10 +58,13 @@ const MyTickets = () => {
 
     return  (
         <div>
+
+        <h1>Mis Tickets</h1>
         {winnerTix && (
             <>
                 <h1>FELICIDADES, aqui estan tus rifas ganadas</h1>
-                <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+                <Row style ={{flex: 1, justifyContent: "center" }}
+                gutter={[16, 16]} xs={24} sm={24} md={8}>
                     {winnerTix.map(rifa => <RifaCard
                     key={rifa.id}
                     {...rifa}/>)}
@@ -71,7 +74,8 @@ const MyTickets = () => {
         )}
         <h2>Rifas abiertas</h2>
         {rifas ? (
-            <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+            <Row style ={{flex: 1, justifyContent: "center" }}
+                gutter={[16, 16]} xs={24} sm={24} md={8}>
                 {rifas.map(rifa => <RifaCard
                 key={rifa.id}
                 {...rifa}/>)}
@@ -82,13 +86,15 @@ const MyTickets = () => {
         <hr/>
         <h2>Rifas cerradas</h2>
         {lostTix ? (
-            <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+            <Row style ={{flex: 1, justifyContent: "center" }}
+                gutter={[16, 16]} xs={24} sm={24} md={8}>
                 {lostTix.map(rifa => <RifaCard
                 key={rifa.id}
                 {...rifa}/>)}
             </Row>
             ): <Spin size="large" />
         }
+
       </div>
     )
     //   ) : <>

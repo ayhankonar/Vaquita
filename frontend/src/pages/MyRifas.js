@@ -21,7 +21,9 @@ const MyRifas = () => {
    
     return user ? (
       <div>
-        <Row gutter={[16, 16]} xs={24} sm={24} md={8}>
+        <h1>Mis Rifas</h1>
+        <Row style ={{flex: 1, justifyContent: "center" }} 
+        gutter={[16, 16]} xs={24} sm={24} md={8}>
             {rifas.map(rifa => <RifaCard
             key={rifa.id}
             {...rifa}/>)}
