@@ -44,11 +44,20 @@ exports.createRifa = async (req, res) => {
 }
 
 exports.getAllRifas = async (req, res) => {
-  const result = await Rifa.find().populate("rifa")
-  const allRifas = result.reverse()
-  res.status(200).json(allRifas)
+  //PARA NO RENDERIZAR LAS RIFAS DE USUARIO EN HOME (SI HAY USUARIO)
+  if (req.user) {
+    const { user: { id } } = req 
+    const results = await Rifa.find({$and:[{ownerID: {$ne: id}},{finished: false},{availableTickets: {$gt:0}}]})
+    //Rifa.find({$and:[{_id: ticket.rifaTicket},{finished: true}]})
+    const allResults = results.reverse()
+    res.status(200).json(allResults)
+  //MOSTRAR TODAS RIFAS CUANDO NO HAYA USUARIO
+  } else {
+    const result = await Rifa.find({$and: [{finished: false},{availableTickets: {$gt:0}}]})
+    const allRifas = result.reverse()
+    res.status(200).json(allRifas)
+  }
 }
-
 
 exports.getRifaDetails = async (req, res) => {
     const { rifaId } = req.params
@@ -155,19 +164,19 @@ exports.boughtTicket = async (req, res) => {
 
 
 
-exports.setRifaWinner = async (req, res) => {
-  const { rifaId } = req.params
-  const rifa = await rifa.findById(rifaId).populate("soldTickets")
-  // 1. obtener a un ganador aleatorio de los soldTickets de la rifa
-  const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
-  const ticketWinner = rifa.soldTickets[winnerId]
-  console.log("winner:", ticketWinner)
-  // 2. cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
-  await Ticket.findByIdAndUpdate(ticketWinner, { winner: true })
-  // 3. Enviar el roadster que diego prometio al ganador.
-  // 4. cambiar la propiedad finished de la rifa por true
-  await rifa.findByIdAndUpdate(rifaId, { finished: true })
-  // 5. redirigir a la misma vista de end rifas
-  res.redirect("/rifas/end")
-  //////CAMBIAR ESTO^^^^
-}
+// exports.setRifaWinner = async (req, res) => {
+//   const { rifaId } = req.params
+//   const rifa = await rifa.findById(rifaId).populate("soldTickets")
+//   // 1. obtener a un ganador aleatorio de los soldTickets de la rifa
+//   const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
+//   const ticketWinner = rifa.soldTickets[winnerId]
+//   console.log("winner:", ticketWinner)
+//   // 2. cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
+//   await Ticket.findByIdAndUpdate(ticketWinner, { winner: true })
+//   // 3. Enviar el roadster que diego prometio al ganador.
+//   // 4. cambiar la propiedad finished de la rifa por true
+//   await rifa.findByIdAndUpdate(rifaId, { finished: true })
+//   // 5. redirigir a la misma vista de end rifas
+//   res.redirect("/rifas/end")
+//   //////CAMBIAR ESTO^^^^
+// }
