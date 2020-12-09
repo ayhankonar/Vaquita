@@ -25,7 +25,7 @@ const RifaDetails = ({
   const [change, setChange] = useState(false)
   const [count, setCount] = useState()
   const [buyable, setBuyable] = useState(false)
-  let previouslyBought = true
+  let previouslyBought = false
 
   useEffect(() => {
     async function getDetails() {
@@ -69,8 +69,8 @@ const RifaDetails = ({
   async function buyTicketFn(){
     console.log(rifaId)
     await buyTicket(rifaId)
-    setBuyable(false)
     setChange(!change)
+    setBuyable(false)
   }
 
   const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
