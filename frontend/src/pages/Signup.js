@@ -8,6 +8,9 @@ import {
 // import Myservice from '../services/index'
 import {signupFn} from '../services/auth'
 
+const googleUrl = process.env.NODE_ENV === 'development' ?
+  "http://localhost:3000/auth/google" : '/auth/google'
+
 export default function Signup({
   history
 }) {
@@ -80,7 +83,7 @@ export default function Signup({
         <Divider>
           Or
         </Divider>
-        <a href={'http://localhost:3000/auth/google'}>
+        <a href={googleUrl}>
           <Button danger block>Signup with Google</Button>
         </a>
     </div>
