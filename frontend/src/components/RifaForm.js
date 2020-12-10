@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Slider, Form, Button, Input, InputNumber, Select, Col, Row, Upload } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Slider, Form, Button, Input, InputNumber, Select, Col, Row, Upload , Divider, Typography} from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { createRifa } from '../services/rifas'
 import axios from 'axios'
@@ -11,8 +11,10 @@ const RifaForm = ({ addRifa }) => {
   const [form] = Form.useForm()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
-  const [inputValue, setInputValue] = useState(1)
+  const [sliderValue, setSliderValue] = useState(1)
   const [numTix, setNumTix] = useState(1)
+  const [totalPrice, setTotalPrice] = useState(null)
+  const [change, setChange] = useState(false)
 
   async function handleSubmit(values) {
 
@@ -21,12 +23,12 @@ const RifaForm = ({ addRifa }) => {
       imageProduct: img,
       // ownerID: user._id
     }
-
-    const { data: newRifa } = await createRifa(rifa);
-    console.log (newRifa)
-    addRifa(newRifa);
-    form.resetFields()
-    setImg(null)
+    console.log(rifa)
+    // const { data: newRifa } = await createRifa(rifa);
+    // console.log (newRifa)
+    // addRifa(newRifa);
+    // form.resetFields()
+    // setImg(null)
   }
 
   async function handleUploadFile(file) {
@@ -49,82 +51,70 @@ const RifaForm = ({ addRifa }) => {
     </div>
   );
 
-  function onChange(value){
-    console.log(value)
-    setInputValue(value)
+  
+
+  const [maxTix, setMaxTix] = useState(null)
+  const [minTix, setMinTix] = useState(null)
+  const [disableButton, setDisableButton] = useState(true)
+
+  function productPriceFn(value){
+    setTotalPrice(value)
+    console.log('TOTAL PRICE: ', value)
+    if (totalPrice > 0 && typeof totalPrice == 'number'){
+      setDisableButton(false)
+    } else {
+      setDisableButton(true)
+    }
+  }
+  
+  const checkPrice = (rule) => {
+    // console.log(value.productPrice)
+    if (totalPrice > 0) {
+      setDisableButton(false)
+      return Promise.resolve('');
+    } else{
+      setDisableButton(true)
+      return Promise.reject('Price must be greater than zero!');
+    }
+  };
+
+  function sliderChange(value){
+    setSliderValue(value)
+    let availableTix = Math.floor(totalPrice/sliderValue)
     form.setFieldsValue({
-      ticketPrice: (value)
+      availableTickets: (availableTix),
+      ticketPrice: (totalPrice/availableTix)
     })
   }
 
-  function totalCost(value){
-    console.log(value)
-    if (inputValue>1){
-      form.setFieldsValue({
-        availableTickets: (inputValue/value)
-      });
-    }
+  function availableTixChange(value){
+    setSliderValue(totalPrice/value)
+    form.setFieldsValue({
+      ticketPrice: (totalPrice/value)
+    })
+  }
+  
+  const [confirmed, setConfirmed] = useState(false)
+  function confirmTotalPrice(){
+    setConfirmed(!confirmed)
+    setChange(!change)
   }
 
-//   title,
-//   description,
-//   productPrice,
-//   productName,
-//   imageProduct,
-//   ticketPrice,
-//   availableTickets,
-//   totalTickets: availableTickets,
-//   ownerID
+  useEffect(() => {
+    function updateMaxMinTix(){
+      setMaxTix(totalPrice/5)
+      setMinTix(totalPrice/100)
+    }
+    updateMaxMinTix()
+}, [change])
+
+const marks = {
+  1: `$1 USD`,
+  100: `$100 USD`
+}
 
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit}>
-      <Form.Item name="title" 
-      label="Title:"
-      rules={[{required: true, message: 'Please input a title'}]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="description" 
-      label="Description:" 
-      rules={[{required: true, message: 'Please input a description'}]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="productName" 
-      label="Product Name:"
-      rules={[{required: true, message: 'Please input a product name'}]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="productPrice" 
-      label="Product Price:"
-      rules={[{required: true, message: 'Please input a product price'}]}>
-        <InputNumber onChange={totalCost}/>
-      </Form.Item>
-      
-      <Row>
-        <Col span={12}>
-          <Slider 
-            min={10} 
-            max={100} 
-            onChange={onChange} 
-            value={inputValue}
-          />
-        </Col>
-        <Col span={4}>
-          <Form.Item name="ticketPrice" 
-          label="Ticket Price:"
-          rules={[{required: true, message: 'Please input a Ticket Price'}]}>
-            <InputNumber min={10} max={100} onChange={onChange} value={inputValue}/>
-          </Form.Item>
-          <p>{numTix}</p>
-        </Col>
-        <Col>
-          <Form.Item name="availableTickets" 
-          label="Available Tickets:"
-          rules={[{required: true, message: 'Please input a Available Tickets'}]}>
-            <InputNumber />
-          </Form.Item>  
-        </Col>
-      </Row>
-     
       <Form.Item name="imageProduct" label="Image:">
         <Upload
           name="image"
@@ -133,6 +123,68 @@ const RifaForm = ({ addRifa }) => {
           {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
         </Upload>
       </Form.Item>
+
+      <Form.Item name="title" 
+      label="Title:"
+      rules={[{required: true, message: 'Please input a title'}]}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item name="productName" 
+      label="Product Name:"
+      rules={[{required: true, message: 'Please input a product name'}]}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item name="description" 
+      label="Description:" 
+      rules={[{required: true, message: 'Please input a description'}]}>
+        <Input.TextArea showCount maxLength={120} rows={4}/>
+      </Form.Item>
+      
+      <Divider></Divider>
+
+      <Form.Item>
+        <Form.Item name="productPrice" label="Product Price:" rules={[{validator: checkPrice}, {type: 'number', message: 'Please input a valid number'},{required: true, message: 'Please input a product price'}]}>
+          <InputNumber disabled={confirmed} onChange={productPriceFn}/> 
+        </Form.Item>
+      {!confirmed ?
+        <Button type="primary" disabled={disableButton} onClick={confirmTotalPrice}>Next</Button> :
+        <Button type="secondary" onClick={confirmTotalPrice}>Edit Product Price</Button>
+      }
+      </Form.Item>
+
+      {confirmed && (
+        <Form.Item>
+
+          <Divider></Divider>
+          <Typography.Paragraph>Nuestra mision es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Asi que limitamos los precios de cada boleto hast $100USD</Typography.Paragraph>
+
+          <Slider 
+            min={1}
+            max={100} 
+            marks = {marks}
+            onChange={sliderChange} 
+            value={sliderValue}
+            tooltipVisible ={false}
+          />
+
+          <Form.Item name="availableTickets" 
+          label="Available Tickets:"
+          rules={[{required: true, message: 'Please input a Available Tickets'}]}>
+            <InputNumber onChange={availableTixChange}/>
+          </Form.Item>  
+
+          <Form.Item name="ticketPrice" 
+          label="Ticket Price:"
+          rules={[{required: true, message: 'Please input a Ticket Price'}]}>
+            <InputNumber min={1} max={100} disabled={true}/>
+          </Form.Item>
+        </Form.Item>
+      )}
+      <Divider></Divider>
+      
+     
       <Button type="primary" size="middle" htmlType="submit">Create</Button>
     </Form>
   )
