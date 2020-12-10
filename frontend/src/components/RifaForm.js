@@ -116,7 +116,7 @@ const marks = {
   return (
     
     <div className="RifaForm">
-    <Form form={form} style={{width: 500, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: 20}} theme="dark" layout="vertical" onFinish={handleSubmit}>
+    <Form form={form} style={{width: 550, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: '40px'}} theme="dark" layout="vertical" onFinish={handleSubmit}>
       <Form.Item name="imageProduct" label="Image:">
         <Upload
           name="image"
@@ -154,8 +154,8 @@ const marks = {
           <InputNumber disabled={confirmed} onChange={productPriceFn} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/> 
         </Form.Item>
         {!confirmed ?
-          <Button type="primary" disabled={disableButton} onClick={confirmTotalPrice}>Next</Button> :
-          <Button type="secondary" onClick={confirmTotalPrice}>Edit Product Price</Button>
+          <Button style={{borderRadius: 100}} type="secondary" disabled={disableButton} onClick={confirmTotalPrice}>Next</Button> :
+          <Button style={{borderRadius: 100}} type="secondary" onClick={confirmTotalPrice}>Edit Product Price</Button>
         }
       </Form.Item>
 
@@ -166,6 +166,7 @@ const marks = {
           <Typography.Paragraph>Nuestra mision es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Asi que limitamos los precios de cada boleto hast $100USD</Typography.Paragraph>
 
           <Slider 
+            style={{margin: "20px", marginBottom: "30px"}}
             min={1}
             max={100} 
             marks = {marks}
