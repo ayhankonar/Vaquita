@@ -58,36 +58,39 @@ const RifaForm = ({ addRifa }) => {
 //   ownerID
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleSubmit}>
-      <Form.Item name="title" 
+    <div className="RifaForm">
+    <Form form={form} style={{width: 500, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: 20}} theme="dark" layout="vertical" onFinish={handleSubmit}>
+      <Form.Item
+      style ={{color:'white'}}
+      name="title" 
       label="Title:"
       rules={[{required: true, message: 'Please input a title'}]}>
-        <Input />
+        <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
       <Form.Item name="description" 
       label="Description:" 
       rules={[{required: true, message: 'Please input a description'}]}>
-        <Input />
+        <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px',  backgroundColor:'#F2F2F2'}} />
       </Form.Item>
       <Form.Item name="productName" 
       label="Product Name:"
       rules={[{required: true, message: 'Please input a product name'}]}>
-        <Input />
+        <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}} />
       </Form.Item>
       <Form.Item name="productPrice" 
       label="Product Price:"
       rules={[{required: true, message: 'Please input a product price'}]}>
-        <InputNumber/>
+        <InputNumber style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
       <Form.Item name="ticketPrice" 
       label="Ticket Price:"
       rules={[{required: true, message: 'Please input a Ticket Price'}]}>
-        <InputNumber />
+        <InputNumber style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
       <Form.Item name="availableTickets" 
       label="Available Tickets:"
       rules={[{required: true, message: 'Please input a Available Tickets'}]}>
-        <InputNumber />
+        <InputNumber style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}} />
       </Form.Item>
       <Form.Item name="imageProduct" label="Image:">
         <Upload
@@ -97,8 +100,9 @@ const RifaForm = ({ addRifa }) => {
           {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
         </Upload>
       </Form.Item>
-      <Button type="primary" block size="middle" htmlType="submit">Create</Button>
+      <Button style={{borderRadius: 100, width: 200, border: 'solid', borderColor: '#bedbbb', color: 'white', backgroundColor: '#bedbbb'}} type="primary" block size="middle" htmlType="submit">Create</Button>
     </Form>
+    </div>
   )
 }
 

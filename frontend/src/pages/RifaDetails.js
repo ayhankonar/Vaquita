@@ -79,6 +79,7 @@ const RifaDetails = ({
     <>
     {title ? (
     <Card
+        style={{width:400, flex:1, justifyContent:'center'}}
         type="inner"
         title={title}
       >
@@ -97,9 +98,9 @@ const RifaDetails = ({
         {user ? (
           <>
             {buyable ? (
-              <Button onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
+              <Button style={{borderRadius:100, border:'solid',color:'#bedbbb', margin: 20}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
             ) : (
-              <Button disabled>Comprar Boleto</Button>
+              <Button style={{borderRadius:100, border:'solid',color:'#bedbbb'}} disabled>Comprar Boleto</Button>
             )}
           </>
         ): (

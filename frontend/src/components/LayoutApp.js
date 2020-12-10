@@ -22,12 +22,13 @@ const LayoutApp = ({ children }) => {
 
   return (
     <Layout className="layout">
-      <Header style={{position: 'fixed', zIndex: 1000, width: '100%', backgroundColor: "#bedbbb"}}>
+      <Header style={{position: 'fixed', height: 65.5, zIndex: 1000, width: '100%', backgroundColor: "#8db596"}}>
         <div className="logo" />
-        <Menu style={{backgroundColor: "#bedbbb"}} theme="dark" mode="horizontal">
+        <Menu style={{backgroundColor: "#8db596"}}  mode="horizontal">
 
           <Menu.Item key="1">
-            <Link to="/">Home</Link>
+            <img style ={{width:90}}src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"></img>
+            <Link to="/" />
           </Menu.Item>
 
           {!user ? <>
@@ -40,7 +41,7 @@ const LayoutApp = ({ children }) => {
               </Menu.Item>
             </> : <>
               <Menu.Item key="2">
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">Perfil</Link>
               </Menu.Item>
 
               <Menu.Item key="3" onClick={handleLogout}>
