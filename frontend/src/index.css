@@ -10,3 +10,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+
+/*Rifa Form*/
+.RifaForm {
+  color: white;
+  padding: 30px;
+  display:flex;
+  justify-content: center;
+}
+
+.input-rifaform{
+  border:'solid';
+  border-color:'#0c7489'; 
+  border-radius: 8; 
+  border-width: '2px';  
+  background-color:'#F2F2F2';
+}
