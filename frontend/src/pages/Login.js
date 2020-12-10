@@ -26,7 +26,7 @@ export default function Login({history}){
   }
 
   return (
-    <div>
+    <div style={{padding:"50px"}}>
       <Form layout='vertical' form={form} onFinish={loginProcess}>
       
         <Form.Item

@@ -24,3 +24,5 @@ export const getRifafromTix = () => ticketsService.get('/rifas')
 export const getRifafromWinnerTix = () => ticketsService.get('/winner-rifas')
 
 export const getRifafromLostTix = () => ticketsService.get('/lost-rifas')
+
+export const compareUserAndRifaTix = (id, rifa) => ticketsService.get(`/${id}`, rifa)

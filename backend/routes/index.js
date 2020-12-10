@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const { productDetail } = require('../controllers/products')
-const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa, getUserRifas, boughtTicket} = require ('../controllers/rifa')
+const {createRifa, getAllRifas, getRifaDetails, updateRifa, deleteRifa, getUserRifas, boughtTicket, checkRifa} = require ('../controllers/rifa')
 const {getUserTickets, getRifaFromTicket, getRifaFromWinnerTicket, getRifaFromLostTicket} = require ('../controllers/tickets')
 const {catchErrs, isAuth} = require ('../middlewares/index');
 const { route } = require('./user');
@@ -33,6 +33,8 @@ router.get('/tickets/rifas', getRifaFromTicket)
 router.get('/tickets/winner-rifas', getRifaFromWinnerTicket)
 //Rifas cerradas, que el usuario no ganó
 router.get('/tickets/lost-rifas', getRifaFromLostTicket)
+
+router.get('/tickets/:rifaId', checkRifa)
 
 //MERCADOPAGO
 router.get('/', (req, res, next) => {

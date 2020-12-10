@@ -3,7 +3,7 @@ import { Card, Avatar, Typography, Button, Modal, Skeleton } from 'antd'
 import RifaEditForm from '../components/RifaEditForm'
 import { getRifaDetails } from '../services/rifas'
 import { getUsrTickets, getRifafromTix, getRifafromWinnerTix, getRifafromLostTix } from '../services/tickets'
-import {buyTicket} from '../services/tickets'
+import {buyTicket, compareUserAndRifaTix} from '../services/tickets'
 import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
 import {Link} from 'react-router-dom'
@@ -23,34 +23,38 @@ const RifaDetails = ({
   const [showModal, setShowModal] = useState(false)
   const [prueba, setPrueba] = useState(false)
   const [change, setChange] = useState(false)
-  const [count, setCount] = useState()
-  const [buyable, setBuyable] = useState(false)
-  let previouslyBought = false
+  const [matches, setMatches] = useState(null)
+  const [buyable, setBuyable] = useState(null)
+  // let previouslyBought = false
 
+  useEffect(() => {
+    async function checkIfBought(){
+      const {data} = await compareUserAndRifaTix(rifaId)
+      console.log(data)
+      setBuyable(!data)
+      
+    }
+    checkIfBought()
+  },[])
+  
+  
   useEffect(() => {
     async function getDetails() {
       const { data } = await getRifaDetails(rifaId)
-      
-      //1.Para confirmar que el usuario no haya comprado boleto previamente
-      data.soldTickets.forEach(el => {
-        if (user && user.tickets.includes(el)){
-          return previouslyBought = true
-        }
-      })
-      
-      if (data.availableTickets > 0 && previouslyBought === false){
-        setBuyable(true)
-      } else {
-        setBuyable(false)
+      //  console.log(data)
+        setRifa(data);
       }
-      setRifa(data);
-    }
 
-    // function buyTix(){}
     getDetails()
-    // setChange(false)
-    //RESET DE PAGINA
   }, [change])
+
+  // useEffect(() => {
+  //   async function checkRifaUserTix(){
+  //     const {data} = await compareUserAndRifaTix()
+  //     console.log(data, "DATA DE AQUI")
+  //   }
+  //   checkRifaUserTix()
+  // },[])
 
   //PARA VERIFICAR SI EL USUARIO ES DUE~O DE LA RIFA Y MOSTRA BOTONES DIFERENTES
   let deUsuario = false
@@ -59,9 +63,9 @@ const RifaDetails = ({
   }
 
   //SUPESTAMENTE PARA PASAR Y ACTUALIZAR EL FORMULARIO PERO NO ME FUNCIONA. 
-  function editRifa(rifas){
-    setRifa([...rifa,rifas])
-  }
+  // function editRifa(rifas){
+  //   setRifa([...rifa,rifas])
+  // }
 
   
   
@@ -89,18 +93,23 @@ const RifaDetails = ({
             <Text>Description: {description}</Text><br/>
             <Text> Ticket Price: {productPrice}</Text><br/>
             <Text> Available Tickets: {availableTickets}</Text><br/>
-        {deUsuario && (
-          <>
-          <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
-          <br/>
-          </>
-        )}
+
         {user ? (
           <>
-            {buyable ? (
-              <Button style={{borderRadius:100, border:'solid',color:'#bedbbb', margin: 20}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
-            ) : (
-              <Button style={{borderRadius:100, border:'solid',color:'#bedbbb'}} disabled>Comprar Boleto</Button>
+
+            {deUsuario ? (
+              <>
+                <Button onClick={()=>setPrueba(!prueba)}>Editar</Button>
+                <br/>
+              </>
+            ): (
+              <>
+                {buyable ? (
+                  <Button style={{borderRadius:100, border:'solid',color:'#bedbbb', margin: 20}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
+                ) : (
+                  <Button style={{borderRadius:100, border:'solid',color:'#bedbbb'}} disabled>Comprar Boleto</Button>
+                )}
+              </>
             )}
           </>
         ): (

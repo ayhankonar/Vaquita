@@ -28,7 +28,7 @@ const CreateRifa = () => {
     
     return (
    
-        <div>
+        <div style={{padding: "75px"}}>
             <RifaForm addRifa={addRifa} />
         </div>
     )
