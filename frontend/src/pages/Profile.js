@@ -42,16 +42,16 @@ export default function Profile() {
             Welcome, {user.userName}
           </Title>
 
-          <Title level={5}>Username</Title>
+          <Title level={5}>Nombre de usuario</Title>
           <Text>{user.userName}</Text>
 
-          <Title level={5}>Name</Title>
+          <Title level={5}>Nombre</Title>
           <Text>{user.firstName} {user.lastName}</Text>
 
           <Title level={5}>Email</Title>
           <Text>{user.email}</Text>
 
-          <Title level={5}>City</Title>
+          <Title level={5}>Ciudad</Title>
           {user.city ? (
             <Text>{user.city}</Text>
           ):(
@@ -68,7 +68,7 @@ export default function Profile() {
         </Typography>
         </div>
         <br/>
-        <Link to={`/profile/edit/${user?._id}`}><Button block>Edit Profile</Button></Link>
+        <Link to={`/profile/edit/${user?._id}`}><Button style={{borderRadius: 100, width: 200, border: 'solid', borderColor: '#bedbbb', color: '#bedbbb' }} block>Editar perfil</Button></Link>
         
       </>
       ): (

@@ -114,7 +114,9 @@ const marks = {
 }
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleSubmit}>
+    
+    <div className="RifaForm">
+    <Form form={form} style={{width: 500, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: 20}} theme="dark" layout="vertical" onFinish={handleSubmit}>
       <Form.Item name="imageProduct" label="Image:">
         <Upload
           name="image"
@@ -124,34 +126,37 @@ const marks = {
         </Upload>
       </Form.Item>
 
-      <Form.Item name="title" 
+      <Form.Item
+      style ={{color:'white'}}
+      name="title" 
       label="Title:"
       rules={[{required: true, message: 'Please input a title'}]}>
-        <Input />
+        <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
 
       <Form.Item name="productName" 
       label="Product Name:"
       rules={[{required: true, message: 'Please input a product name'}]}>
-        <Input />
+        <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}} />
       </Form.Item>
+
 
       <Form.Item name="description" 
       label="Description:" 
       rules={[{required: true, message: 'Please input a description'}]}>
-        <Input.TextArea showCount maxLength={120} rows={4}/>
+        <Input.TextArea showCount maxLength={120} rows={4} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px',  backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
       
       <Divider></Divider>
 
       <Form.Item>
         <Form.Item name="productPrice" label="Product Price:" rules={[{validator: checkPrice}, {type: 'number', message: 'Please input a valid number'},{required: true, message: 'Please input a product price'}]}>
-          <InputNumber disabled={confirmed} onChange={productPriceFn}/> 
+          <InputNumber disabled={confirmed} onChange={productPriceFn} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/> 
         </Form.Item>
-      {!confirmed ?
-        <Button type="primary" disabled={disableButton} onClick={confirmTotalPrice}>Next</Button> :
-        <Button type="secondary" onClick={confirmTotalPrice}>Edit Product Price</Button>
-      }
+        {!confirmed ?
+          <Button type="primary" disabled={disableButton} onClick={confirmTotalPrice}>Next</Button> :
+          <Button type="secondary" onClick={confirmTotalPrice}>Edit Product Price</Button>
+        }
       </Form.Item>
 
       {confirmed && (
@@ -172,21 +177,23 @@ const marks = {
           <Form.Item name="availableTickets" 
           label="Available Tickets:"
           rules={[{required: true, message: 'Please input a Available Tickets'}]}>
-            <InputNumber onChange={availableTixChange}/>
+            <InputNumber onChange={availableTixChange} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
           </Form.Item>  
 
           <Form.Item name="ticketPrice" 
           label="Ticket Price:"
           rules={[{required: true, message: 'Please input a Ticket Price'}]}>
-            <InputNumber min={1} max={100} disabled={true}/>
+            <InputNumber min={1} max={100} disabled={true} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
           </Form.Item>
         </Form.Item>
       )}
       <Divider></Divider>
       
      
-      <Button type="primary" size="middle" htmlType="submit">Create</Button>
+      <Button style={{borderRadius: 100, width: 200, border: 'solid', borderColor: '#bedbbb', color: 'white', backgroundColor: '#bedbbb'}} type="primary" size="middle" htmlType="submit">Create</Button>
+
     </Form>
+    </div>
   )
 }
 

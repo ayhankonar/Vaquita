@@ -39,7 +39,7 @@ function RifaCard({ title, productName, description, imageProduct, _id, availabl
         />
       }
       actions={[
-        // <EditOutlined key="edit" />,
+
         <Link to={`/rifas/${_id}`}>Details </Link>,
       ]}
     >
