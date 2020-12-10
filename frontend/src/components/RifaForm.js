@@ -114,8 +114,10 @@ const marks = {
 }
 
   return (
-    
+
     <div className="RifaForm">
+       <h1>Crea tu rifa!</h1>
+       <br/>
     <Form form={form} style={{width: 500, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: 20}} theme="dark" layout="vertical" onFinish={handleSubmit}>
       <Form.Item name="imageProduct" label="Image:">
         <Upload
