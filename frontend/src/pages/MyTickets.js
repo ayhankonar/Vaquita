@@ -39,8 +39,11 @@ const MyTickets = () => {
     useEffect(() => {
         async function getWinnerRifas(){
             const { data } = await getRifafromWinnerTix()
-            console.log('WINNER', data)
-            setWinnerTix(data)
+            if (data.length<1){
+                setWinnerTix(null)
+            } else {
+                setWinnerTix(data)
+            }
         }
 
         getWinnerRifas()

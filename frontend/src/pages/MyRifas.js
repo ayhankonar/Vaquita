@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { getUsrRifas } from '../services/rifas'
-import RifaCard from '../components/RifaCard'
+import RifaCardEdit from '../components/RifaCardEdit'
 import { useContextInfo } from '../hooks/context'
 import { Row, Col, Typography, Card, Button, Modal } from 'antd'
 const { Title, Text } = Typography
@@ -24,7 +24,7 @@ const MyRifas = () => {
         <h1>Mis Rifas</h1>
         <Row style ={{flex: 1, justifyContent: "center" }} 
         gutter={[16, 16]} xs={24} sm={24} md={8}>
-            {rifas.map(rifa => <RifaCard
+            {rifas.map(rifa => <RifaCardEdit
             key={rifa.id}
             {...rifa}/>)}
         </Row>

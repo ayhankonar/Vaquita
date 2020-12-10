@@ -103,11 +103,22 @@ exports.deleteRifa =  async (req, res) => {
   }
 
 ////////////
+
+exports.checkRifa = async(req,res) => {
+  const {rifaId} = req.params
+  const { user: { id } } = req
+  const { soldTickets } = await Rifa.findById(rifaId).populate('soldTickets')
+  // const { tickets } = await User.findById(id).populate('tickets')
+  
+  if(soldTickets.find(tix =>tix.owner == id)){
+    res.status(200).json(true)
+  } else {
+    res.status(200).json(false)
+  }
+}
   
 exports.boughtTicket = async (req, res) => {
   const { rifaId } = req.params
-  console.log(req.user._id, "USER")
-  console.log(rifaId, "RIFAID")
   const rifa = await Rifa.findOne({ _id: rifaId })
   
   // 1. Generar el ticket

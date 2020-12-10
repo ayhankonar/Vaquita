@@ -28,4 +28,3 @@ export const editRifa = (id, rifa) => rifasService.put(`/${id}`, rifa)
 
 //Borrar una rifa
 export const deleteRifa = id => rifasService.delete(`/${id}`)
-
