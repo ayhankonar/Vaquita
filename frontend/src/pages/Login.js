@@ -4,6 +4,7 @@ import {
   Input,
   Button,
   Divider,
+  Checkbox
 } from 'antd'
 
 import { loginFn } from '../services/auth'
@@ -25,16 +26,31 @@ export default function Login({history}){
 
   }
 
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  };
+
+  const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+  };
+
   return (
-    <div>
-      <Form layout='vertical' form={form} onFinish={loginProcess}>
+    <div className="login">
+     <div>
+      <Form 
+      className="form-login"
+        {...layout}
+        name="basic"
+        initialValues={{ remember: true }}
+       form={form} onFinish={loginProcess}>
       
         <Form.Item
           name='email'
           label='Email:'
           rules={[{required: true, message: 'Please input a valid email address'}]}
         >
-          <Input />
+          <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}} />
         </Form.Item>
 
         <Form.Item
@@ -42,22 +58,33 @@ export default function Login({history}){
           label='Password:'
           rules={[{required: true, message: 'Please input a password'}]}
         >
-          <Input.Password />
+          <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
         </Form.Item>
 
-        <Button type="primary" block htmlType="submit">
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox 
+          >Remember me</Checkbox>
+        </Form.Item>
+
+      <Form.Item {...tailLayout}>
+        <Button style={{backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}} type="primary" block htmlType="submit">
           Log in
         </Button>
-
+        </Form.Item>
       </Form>
-
-      <Divider>
-        Or
-      </Divider>
-
+      </div>
+      <div>
+      <Form.Item {...tailLayout}>
+        <Divider>
+          Or
+        </Divider>
+      </Form.Item>
+      <Form.Item {...tailLayout}>
       <a href={'http://localhost:3000/auth/google'}>
-        <Button danger block>Login with Google</Button>
+        <Button style={{border:'solid', borderWidth: 2, borderRadius: 4}} danger block>Login with Google</Button>
       </a>
+      </Form.Item>
+      </div>
 
   </div>
   )

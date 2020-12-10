@@ -68,7 +68,7 @@ const LayoutApp = ({ children }) => {
       <Content style={{ padding: '75px 50px 0 50px', minHeight: 'calc(100vh - 153.6px)' }}>
         <div className="site-layout-content">{children}</div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Vaquita de la suerte 🍀 <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>
+      <Footer style={{ textAlign: 'center' }}>Vaquita de la suerte <img style={{width: 40}} src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"/> <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>
     </Layout>
   )
 }
