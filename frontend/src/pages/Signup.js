@@ -23,16 +23,27 @@ export default function Signup({
     history.push('/login')
     // console.log('user:', values)
   }
+
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  };
+
+  const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+  };
   
   return (
-    <div>
-        <Form layout='vertical' form={form} onFinish={signupProcess}>
+    <div className="signup">
+        <Form
+        {...layout}
+          form={form} onFinish={signupProcess}>
           <Form.Item 
             name='userName' 
             label='Nombre de Usuario:'
             rules={[{required: true, message: 'Please input a name'}]}
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}} />
           </Form.Item>
 
           <Form.Item 
@@ -40,7 +51,7 @@ export default function Signup({
             label='Nombre:'
             rules={[{required: true, message: 'Please input a name'}]}
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
@@ -48,7 +59,7 @@ export default function Signup({
             label='Apellido:'
             rules={[{required: true, message: 'Please input a last name'}]}
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}} />
           </Form.Item>
 
           <Form.Item 
@@ -56,7 +67,7 @@ export default function Signup({
             label='Email:'
             rules={[{required: true, message: 'Please input a valid email address'}]}
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}} />
           </Form.Item>
 
           <Form.Item 
@@ -64,7 +75,7 @@ export default function Signup({
             label='Contraseña:' 
             rules={[{required: true, message: 'Please input a password'}]}
           >
-            <Input.Password />
+            <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
@@ -72,20 +83,28 @@ export default function Signup({
             label='Confirmar contraseña:' 
             rules={[{required: true, message: 'Please confirm password'}]}
           >
-            <Input.Password />
+            <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
-          <Button type="primary" block htmlType="submit">
+          <Form.Item {...tailLayout}> 
+          <Button style={{backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}}
+          type="primary" block htmlType="submit">
             Signup
           </Button>
+          </Form.Item> 
 
         </Form>
+        <Form.Item {...tailLayout}> 
         <Divider>
           Or
         </Divider>
+        </Form.Item>
+        <Form.Item {...tailLayout}> 
         <a href={googleUrl}>
-          <Button danger block>Signup with Google</Button>
+          <Button style={{border:'solid', borderWidth: 2, borderRadius: 4}} 
+          danger block>Signup with Google</Button>
         </a>
+        </Form.Item>
     </div>
   );
 }
