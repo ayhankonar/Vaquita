@@ -3,8 +3,10 @@ import { getUsrTickets, getRifafromTix, getRifafromWinnerTix, getRifafromLostTix
 import RifaCard from '../components/RifaCard'
 import { getRifaDetails } from '../services/rifas'
 import { useContextInfo } from '../hooks/context'
-import { Row, Col, Typography, Card, Button, Modal, Spin } from 'antd'
+import { Row, Col, Collapse, Pagination, Typography, Card, Button, Modal, Spin } from 'antd'
 const { Title, Text } = Typography
+
+const { Panel } = Collapse;
 
 const MyTickets = () => {
     const { user } = useContextInfo()
@@ -12,19 +14,6 @@ const MyTickets = () => {
     const [winnerTix, setWinnerTix] = useState(null)
     const [lostTix, setLostTix] = useState(null)
     const [rifas, setRifas] = useState(null)
-
-    // useEffect(() => {
-    //     async function getTickets() {
-    //     const { data } = await getUsrTickets()
-    //     //if ticketWinner = true
-    //     //getRifafrom 
-    //     console.log(data,"DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-    //     setTickets(data);
-    //     }
-
-
-    //     getTickets()
-    // }, [])
 
     useEffect(() => {
         async function getRifas(){
@@ -63,19 +52,19 @@ const MyTickets = () => {
         <div>
 
         <h1>Mis Tickets</h1>
+        <Collapse bordered={false} defaultActiveKey={['2']}>
         {winnerTix && (
-            <>
-                <h1>¡Felicidades! Aquí están las rifas que has ganado</h1>
-                <Row style ={{flex: 1, justifyContent: "center" }}
-                gutter={[16, 16]} xs={24} sm={24} md={8}>
-                    {winnerTix.map(rifa => <RifaCard
-                    key={rifa.id}
-                    {...rifa}/>)}
-                </Row>
-                <hr/>
-            </>
+            <Panel header="¡Felicidades! Aquí están las rifas que has ganado" key="1">
+            <Row style ={{flex: 1, justifyContent: "center" }}
+            gutter={[16, 16]} xs={24} sm={24} md={8}>
+                {winnerTix.map(rifa => <RifaCard
+                key={rifa.id}
+                {...rifa}/>)}
+            </Row>
+            </Panel>
         )}
-        <h2>Rifas abiertas</h2>
+        {/* <h2>Rifas abiertas</h2> */}
+        <Panel header="Rifas abiertas" key="2">
         {rifas ? (
             <Row style ={{flex: 1, justifyContent: "center" }}
                 gutter={[16, 16]} xs={24} sm={24} md={8}>
@@ -85,18 +74,22 @@ const MyTickets = () => {
             </Row>
             ): <Spin size="large"/>
         }
+        </Panel>
 
-        <hr/>
-        <h2>Rifas cerradas</h2>
+        {/* <hr/> */}
+        {/* <h2>Rifas cerradas</h2> */}
+        <Panel header="Rifas cerradas" key="3">
         {lostTix ? (
             <Row style ={{flex: 1, justifyContent: "center" }}
-                gutter={[16, 16]} xs={24} sm={24} md={8}>
+            gutter={[16, 16]} xs={24} sm={24} md={8}>
                 {lostTix.map(rifa => <RifaCard
                 key={rifa.id}
                 {...rifa}/>)}
             </Row>
             ): <Spin size="large" />
         }
+        </Panel>
+        </Collapse>
 
       </div>
     )
