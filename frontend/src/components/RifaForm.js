@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Input, InputNumber, Select, Upload } from 'antd'
+import { Slider, Form, Button, Input, InputNumber, Select, Col, Row, Upload } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { createRifa } from '../services/rifas'
 import axios from 'axios'
@@ -11,6 +11,8 @@ const RifaForm = ({ addRifa }) => {
   const [form] = Form.useForm()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
+  const [inputValue, setInputValue] = useState(1)
+  const [numTix, setNumTix] = useState(1)
 
   async function handleSubmit(values) {
 
@@ -47,6 +49,23 @@ const RifaForm = ({ addRifa }) => {
     </div>
   );
 
+  function onChange(value){
+    console.log(value)
+    setInputValue(value)
+    form.setFieldsValue({
+      ticketPrice: (value)
+    })
+  }
+
+  function totalCost(value){
+    console.log(value)
+    if (inputValue>1){
+      form.setFieldsValue({
+        availableTickets: (inputValue/value)
+      });
+    }
+  }
+
 //   title,
 //   description,
 //   productPrice,
@@ -77,18 +96,35 @@ const RifaForm = ({ addRifa }) => {
       <Form.Item name="productPrice" 
       label="Product Price:"
       rules={[{required: true, message: 'Please input a product price'}]}>
-        <InputNumber/>
+        <InputNumber onChange={totalCost}/>
       </Form.Item>
-      <Form.Item name="ticketPrice" 
-      label="Ticket Price:"
-      rules={[{required: true, message: 'Please input a Ticket Price'}]}>
-        <InputNumber />
-      </Form.Item>
-      <Form.Item name="availableTickets" 
-      label="Available Tickets:"
-      rules={[{required: true, message: 'Please input a Available Tickets'}]}>
-        <InputNumber />
-      </Form.Item>
+      
+      <Row>
+        <Col span={12}>
+          <Slider 
+            min={10} 
+            max={100} 
+            onChange={onChange} 
+            value={inputValue}
+          />
+        </Col>
+        <Col span={4}>
+          <Form.Item name="ticketPrice" 
+          label="Ticket Price:"
+          rules={[{required: true, message: 'Please input a Ticket Price'}]}>
+            <InputNumber min={10} max={100} onChange={onChange} value={inputValue}/>
+          </Form.Item>
+          <p>{numTix}</p>
+        </Col>
+        <Col>
+          <Form.Item name="availableTickets" 
+          label="Available Tickets:"
+          rules={[{required: true, message: 'Please input a Available Tickets'}]}>
+            <InputNumber />
+          </Form.Item>  
+        </Col>
+      </Row>
+     
       <Form.Item name="imageProduct" label="Image:">
         <Upload
           name="image"
@@ -97,7 +133,7 @@ const RifaForm = ({ addRifa }) => {
           {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
         </Upload>
       </Form.Item>
-      <Button type="primary" block size="middle" htmlType="submit">Create</Button>
+      <Button type="primary" size="middle" htmlType="submit">Create</Button>
     </Form>
   )
 }
