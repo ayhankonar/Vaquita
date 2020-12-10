@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Typography, Card, Button, Modal } from 'antd'
+import { Row, Col, Typography, Card, Button, Modal } from 'antd'
 import { getAllRifas } from '../services/rifas'
 import RifaCard from '../components/RifaCard'
 
@@ -19,8 +19,11 @@ function Home() {
   // })
 
   return  (
-    <div>
-      <h1>Home</h1>
+    <div style={{margin:"0", padding:"0"}}>
+      <Col style={{height:"400px", width:"100vw", overflow:"hidden"}}>
+        <img style={{width:"100%", verticalAlign: "middle"}}src="./golden-gift-boxes.jpg" alt="gift boxes"/>
+      </Col>
+      <h1>Buscar </h1>
       <Row style ={{flex: 1, justifyContent: "center" }}
       gutter={[16, 16]} xs={24} sm={24} md={8}>
         {rifas.map(rifa => <RifaCard

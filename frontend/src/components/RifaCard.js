@@ -11,7 +11,7 @@ const { Meta } = Card;
 
 
 
-function RifaCard({ title, productName, description, imageProduct, _id }) {
+function RifaCard({ title, productName, description, imageProduct, _id, availableTickets, ticketPrice }) {
   // return (
   //   <Card
   //     type="inner"
@@ -39,12 +39,13 @@ function RifaCard({ title, productName, description, imageProduct, _id }) {
         />
       }
       actions={[
+
         <Link to={`/rifas/${_id}`}>Details </Link>,
       ]}
     >
       <Meta
         title={title}
-       
+        description = {`$${ticketPrice} | ${availableTickets} boletos`}
       />
     </Card>
   )
