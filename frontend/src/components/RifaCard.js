@@ -30,7 +30,7 @@ function RifaCard({ title, productName, description, imageProduct, _id, availabl
 
   return(
     <Card
-      style={{ width: 300, height: 300, margin: 50 }}
+      style={{ border:'solid', borderWidth: '1px', borderColor:'#0c7489', width: 300, height: 300, margin: 50 }}
       cover={
         <img
         style={{ width: 300}}
