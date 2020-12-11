@@ -4,7 +4,7 @@ The name Vaquita ("little cow") comes from "hacer una vaca" (lit. "make a cow"),
 
 ### User account
 - User: user@demo.com
-- Password: RentAchef94
+- Password: vaquita
 
 ### Environment Vars
 - PORT= local connection port
