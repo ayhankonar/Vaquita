@@ -12,14 +12,6 @@ const CreateRifa = () => {
 
     //Declarar variable de history
     const history = useHistory()
-    
-    // useEffect(() => {
-    //     async function rifaCreate() {
-    //       const { data } = await createRifa()
-    //       setRifas(data);
-    //     }
-    //     rifaCreate()
-    //   }, [])
 
     function addRifa(rifa) {
         setRifas([...rifas, rifa])
@@ -28,7 +20,8 @@ const CreateRifa = () => {
     
     return (
    
-        <div style={{padding: "75px"}}>
+        <div style={{padding: "25px 75px"}}>
+            <h1 style={{fontSize: '3em'}}>Crea tu rifa!</h1>
             <RifaForm addRifa={addRifa} />
         </div>
     )

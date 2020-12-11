@@ -18,23 +18,12 @@ export default function EditRifa({
     ticketPrice,
     availableTickets,
     ownerID
-    // totalTickets: availableTickets,
 }){
   const [rifa, setRifa] = useState({})
   const { user } = useContextInfo()
   const [form] = Form.useForm()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
-
-  // useEffect(() => {
-  //   async function getDetails() {
-  //     const { data } = await getRifaDetails(rifaId)
-  //     setRifa(data);
-  //   }
-
-  //   getDetails()
-  // // }, [rifaId])
-  // }, [])
 
 
   async function handleSubmit(values) {
@@ -70,16 +59,6 @@ export default function EditRifa({
     </div>
   );
 
-  //   title,
-  //   description,
-  //   productPrice,
-  //   productName,
-  //   imageProduct,
-  //   ticketPrice,
-  //   availableTickets,
-  //   totalTickets: availableTickets,
-  //   ownerID
-
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit} initialValues={
       {
@@ -90,12 +69,26 @@ export default function EditRifa({
         imageProduct,
         ticketPrice,
         availableTickets,
-        // totalTickets: availableTickets,
       }
     }>
+      <Form.Item name="imageProduct" label="Imagen:">
+        <Upload
+          name="image"
+          showUploadList={false}
+          beforeUpload={handleUploadFile}>
+          {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
+        </Upload>
+
       <Form.Item 
         name="title" 
-        label="Title:"
+        label="Título:"
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item 
+        name="productName" 
+        label="Nombre del producto:"
       >
         <Input />
       </Form.Item>
@@ -108,44 +101,29 @@ export default function EditRifa({
       </Form.Item>
 
       <Form.Item 
-        name="productName" 
-        label="Product Name:"
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item 
         name="productPrice" 
-        label="Product Price:"
-      >
-        <InputNumber disabled/>
-      </Form.Item>
-
-      <Form.Item 
-        name="ticketPrice" 
-        label="Ticket Price:"
-        
+        label="Precio del producto:"
       >
         <InputNumber disabled/>
       </Form.Item>
 
       <Form.Item 
         name="availableTickets" 
-        label="Available Tickets:"
+        label="Tickets disponibles:"
+      >
+        <InputNumber disabled/>
+      </Form.Item>
+
+      <Form.Item 
+        name="ticketPrice" 
+        label="Precio del ticket:"
         
       >
         <InputNumber disabled/>
       </Form.Item>
       
-      <Form.Item name="imageProduct" label="Image:">
-        <Upload
-          name="image"
-          showUploadList={false}
-          beforeUpload={handleUploadFile}>
-          {img ? <img src={img} style={{ width: '100%' }} /> : uploadButton}
-        </Upload>
       </Form.Item>
-      <Button type="primary" block size="middle" htmlType="submit">Save Changes</Button>
+      <Button type="primary" block size="middle" htmlType="submit">Guardar cambios</Button>
     </Form>
   )
 }

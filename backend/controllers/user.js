@@ -3,15 +3,8 @@ const Rifa = require("../models/Rifa");
 const Ticket = require("../models/Ticket")
 
 exports.profileView = async (req, res, next) => {
-  // const { user: { id } } = req
-  // const { userId }  = req.params
-  // const user = await User.findById(id)
   const user = await User.findById(req.user._id)
   res.status(200).json(user)
-  // const {userId}  = req.user._id
-  // User.findById(userId)
-  //   .then((user) => res.status(200).json({ user }))
-  //   .catch((err) => res.status(500).json({ err }));
 }
 
 

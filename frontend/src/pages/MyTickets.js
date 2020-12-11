@@ -10,7 +10,6 @@ const { Panel } = Collapse;
 
 const MyTickets = () => {
     const { user } = useContextInfo()
-    // const [tickets, setTickets] = useState([])
     const [winnerTix, setWinnerTix] = useState(null)
     const [lostTix, setLostTix] = useState(null)
     const [rifas, setRifas] = useState(null)
@@ -49,12 +48,11 @@ const MyTickets = () => {
     }, [])
 
     return  (
-        <div style={{margin: "30px"}}>
-
-        <h1>Mis Tickets</h1>
-        <Collapse bordered={false} defaultActiveKey={['2']}>
+        <div style={{margin: "0 30px", padding: '25px 0 0 0'}}>
+        <h1 style={{fontSize: '3em'}}>Mis Tickets</h1>
+        <Collapse bordered={false} defaultActiveKey={['2']} style={{border: '1px solid #0c7489'}}>
         {winnerTix && (
-            <Panel header="¡Felicidades! Aquí están las rifas que has ganado" key="1">
+            <Panel style={{fontSize: '1.5em'}} header="¡Felicidades! Aquí están las rifas que has ganado" key="1">
             <Row style ={{flex: 1, justifyContent: "center" }}
             gutter={[16, 16]} xs={24} sm={24} md={8}>
                 {winnerTix.map(rifa => <RifaCard
@@ -63,8 +61,7 @@ const MyTickets = () => {
             </Row>
             </Panel>
         )}
-        {/* <h2>Rifas abiertas</h2> */}
-        <Panel header="Rifas abiertas" key="2">
+        <Panel style={{fontSize: '1.5em'}} header="Rifas abiertas" key="2">
         {rifas ? (
             <Row style ={{flex: 1, justifyContent: "center" }}
                 gutter={[16, 16]} xs={24} sm={24} md={8}>
@@ -76,9 +73,7 @@ const MyTickets = () => {
         }
         </Panel>
 
-        {/* <hr/> */}
-        {/* <h2>Rifas cerradas</h2> */}
-        <Panel header="Rifas cerradas" key="3">
+        <Panel style={{fontSize: '1.5em'}} header="Rifas cerradas" key="3">
         {lostTix ? (
             <Row style ={{flex: 1, justifyContent: "center" }}
             gutter={[16, 16]} xs={24} sm={24} md={8}>
@@ -93,10 +88,6 @@ const MyTickets = () => {
 
       </div>
     )
-    //   ) : <>
-    //   <Title level={1}>Fake</Title>
-    //   <Text type="secondary">compra tus tickets no seas ..</Text>
-    // </>
   
 }
 
