@@ -32,6 +32,7 @@ const LayoutApp = ({ children }) => {
           </Menu.Item>
 
           {!user ? <>
+          
               <Menu.Item 
                 style={{color:'white'}}
                 key="2">
@@ -61,11 +62,15 @@ const LayoutApp = ({ children }) => {
               <Menu.Item key="6" onClick={handleLogout}>
                 Logout
               </Menu.Item>
-              </>}          
+              </>
+              
+             }
+                     
         </Menu>
+      
         <Menu style={{backgroundColor: "#bedbbb"}} mode="horizontal">
-
         </Menu>
+      
       </Header>
       <br />
       <Content style={{ padding: '50px 0', minHeight: 'calc(100vh - 153.6px)' }}>

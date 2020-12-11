@@ -66,8 +66,10 @@ export default function ProfileEditForm({history}) {
 
   
   return (
-    <div>
-        <Form layout='vertical' form={form} onFinish={handleSubmit} initialValues={{
+    <div className= "edit-profile">
+        <Form 
+          style={{width: 600, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: '50px'}} theme="dark" layout="vertical" onFinish={handleSubmit}
+          layout='vertical' form={form} onFinish={handleSubmit} initialValues={{
           email: user.email,
           userName: user.userName,
           firstName: user.firstName,
@@ -88,67 +90,57 @@ export default function ProfileEditForm({history}) {
           </Form.Item>
 
           <Form.Item 
+           style={{width:500}}
             name='userName' 
             label='Nombre de Usuario:'
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
+            style={{width:500}}
             name='firstName' 
             label='Nombre:'
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
+            style={{width:500}}
             name='lastName' 
             label='Apellido:'
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
+            style={{width:500}}
             name='email' 
             label='Nuevo email:'
           >
-            <Input />
-          </Form.Item>
-
-          {/* <Divider></Divider>
-
-          <Form.Item 
-            name='password' 
-            label='Nueva contraseña:' 
-          >
-            <Input.Password />
+            <Input style={{  border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
-            name='password2' 
-            label='Confirmar nueva contraseña:' 
-          >
-            <Input.Password />
-          </Form.Item> */}
-
-          <Divider></Divider>
-
-          <Form.Item 
+            style={{width:500}}
             name='city' 
             label='Ciudad:' 
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
           <Form.Item 
+            style={{width:500}}
             name='country' 
             label='País:' 
           >
-            <Input />
+            <Input style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
 
-          <Button type="primary" block htmlType="submit">
-            Save Changes
+          <Button
+           style={{width:500, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}}
+           type="primary" block htmlType="submit">
+            Guardar Cambios
           </Button>
 
         </Form>
