@@ -104,7 +104,7 @@ const RifaDetails = ({
                 {buyable ? (
                   <Button style={{margin: 20, color:'white', width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
                 ) : (
-                  <Button style={{margin: 20, color:'#0c7489', width:250, backgroundColor: 'white', border: 'solid', borderColor: '#0c7489', borderRadius: 4, borderWidth: 2}} disabled>Ya compraste un boleto</Button>
+                  <Button style={{margin: 20, color:'white', width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}} disabled>Comprar Boleto</Button>
                 )}
               </>
             )}
