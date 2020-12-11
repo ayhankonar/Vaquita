@@ -1,8 +1,19 @@
+@import url(//db.onlinewebfonts.com/c/c36a75c5ada59665e225bbf5e38efd34?family=Averta-Bold);
+@import url(//db.onlinewebfonts.com/c/f036e81e6040acc6b43aabc036862d21?family=Averta-Regular);
+@import url(//db.onlinewebfonts.com/c/a78cfad3beb089a6ce86d4e280fa270b?family=Calibri);
+@import url(//db.onlinewebfonts.com/c/f520e19281e4912539d5cf95df29e683?family=Nunito+Light);
+
+*{
+  font-family: 'Averta-Regular';
+}
+
+h1{
+  font-family: 'Averta-Bold';
+}
+
 body {
   margin: 0;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,23 +49,30 @@ code {
 } */
 
 .login {
-  width: 400px;
+
+  width: 1300px;
   height: 500px;
   margin: 30px;
   display: flex;
   justify-content: center;
   align-content: center;
-  /* align-items: center; */
+  align-items: center;
   flex-direction: column;
+}
+
+.login Form.Item{
+  width:400px;
 }
 
 /*Signup*/
 .signup {
-  width: 480px;
+  width: 1300px;
   height: 500px;
   margin: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  align-content: center;
+  align-items: center;
+  /*align-items:center; */
 }
