@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { getUsrRifas } from '../services/rifas'
+import {Link} from 'react-router-dom'
 import RifaCardEdit from '../components/RifaCardEdit'
 import { useContextInfo } from '../hooks/context'
 import { Row, Col, Typography, Card, Button, Modal } from 'antd'
@@ -30,8 +31,7 @@ const MyRifas = () => {
         </Row>
       </div>
     ) : <>
-    <Title level={1}>Fake</Title>
-    <Text type="secondary">Login or Signup</Text>
+    <Link to='/login'><Button>Login</Button></Link>
   </>
 
 }

@@ -12,8 +12,10 @@ exports.getUserRifas = async (req, res) => {
 
 exports.createRifa = async (req, res) => {
   const {
-    price: ticketPrice,
-    ticketQuantity: availableTickets,
+    // price: ticketPrice,
+    ticketPrice,
+    // ticketQuantity: availableTickets,
+    availableTickets,
     title,
     description,
     productPrice,

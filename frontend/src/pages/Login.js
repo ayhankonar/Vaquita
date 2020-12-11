@@ -12,6 +12,10 @@ import { useContextInfo } from '../hooks/context'
 
 // const {Title} = Typography
 
+const googleUrl = process.env.NODE_ENV === 'development' ?
+  "http://localhost:3000/auth/google" : '/auth/google'
+
+
 export default function Login({history}){
   const [form] = Form.useForm()
   const { setCtxUser } = useContextInfo()
@@ -22,7 +26,7 @@ export default function Login({history}){
     delete user.hash
     delete user.salt
     setCtxUser(user)
-    history.push('/profile')
+    history.push('/')
 
   }
 

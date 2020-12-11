@@ -24,11 +24,11 @@ const RifaForm = ({ addRifa }) => {
       // ownerID: user._id
     }
     console.log(rifa)
-    // const { data: newRifa } = await createRifa(rifa);
-    // console.log (newRifa)
-    // addRifa(newRifa);
-    // form.resetFields()
-    // setImg(null)
+    const { data: newRifa } = await createRifa(rifa);
+    console.log (newRifa)
+    addRifa(newRifa);
+    form.resetFields()
+    setImg(null)
   }
 
   async function handleUploadFile(file) {
@@ -83,14 +83,14 @@ const RifaForm = ({ addRifa }) => {
     let availableTix = Math.floor(totalPrice/sliderValue)
     form.setFieldsValue({
       availableTickets: (availableTix),
-      ticketPrice: (totalPrice/availableTix)
+      ticketPrice: ((totalPrice/availableTix).toFixed(2))
     })
   }
 
   function availableTixChange(value){
     setSliderValue(totalPrice/value)
     form.setFieldsValue({
-      ticketPrice: (totalPrice/value)
+      ticketPrice: ((totalPrice/value).toFixed(2))
     })
   }
   
@@ -186,7 +186,8 @@ const marks = {
           <Form.Item name="ticketPrice" 
           label="Precio del ticket:"
           rules={[{required: true, message: 'Please input a Ticket Price'}]}>
-            <InputNumber min={1} max={100} disabled={true} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
+            {/* <InputNumber  style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/> */}
+            <InputNumber min={1} max={100} disabled={true}/>
           </Form.Item>
         </Form.Item>
       )}
