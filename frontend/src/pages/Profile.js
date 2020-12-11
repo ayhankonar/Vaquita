@@ -30,6 +30,7 @@ export default function Profile() {
   }, [])
 
   return (
+    <div className="profile">
     <Col>
       {user ? (
       <>
@@ -58,7 +59,7 @@ export default function Profile() {
             <Text>Edit profile to add</Text>
           )}
 
-          <Title level={5}>Country</Title>
+          <Title level={5}>Ciudad</Title>
           {user.country ? (
             <Text>{user.country}</Text>
           ):(
@@ -78,5 +79,6 @@ export default function Profile() {
       )}
 
     </Col>
+    </div>
   )
 }
