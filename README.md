@@ -3,7 +3,7 @@ Our ReactJS application is an e-commerce platform where users can shop for nice-
 
 ### User account
 - User: user@demo.com
-- Password: RentAchef94
+- Password: vaquita
 
 ### Environment Vars
 - PORT= local connection port
