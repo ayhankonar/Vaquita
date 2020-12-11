@@ -30,6 +30,7 @@ export default function Profile() {
   }, [])
 
   return (
+    
     <Col>
       {user ? (
       <>
