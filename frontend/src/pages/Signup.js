@@ -35,10 +35,12 @@ export default function Signup({
   
   return (
     <div className="signup">
+      
         <Form
         {...layout}
           form={form} onFinish={signupProcess}>
           <Form.Item 
+            style={{width:500}}
             name='userName' 
             label='Nombre de Usuario:'
             rules={[{required: true, message: 'Please input a name'}]}
@@ -47,6 +49,7 @@ export default function Signup({
           </Form.Item>
 
           <Form.Item 
+            style={{width:500}}
             name='firstName' 
             label='Nombre:'
             rules={[{required: true, message: 'Please input a name'}]}
@@ -55,6 +58,7 @@ export default function Signup({
           </Form.Item>
 
           <Form.Item 
+          style={{width:500}}
             name='lastName' 
             label='Apellido:'
             rules={[{required: true, message: 'Please input a last name'}]}
@@ -63,6 +67,7 @@ export default function Signup({
           </Form.Item>
 
           <Form.Item 
+          style={{width:500}}
             name='email' 
             label='Email:'
             rules={[{required: true, message: 'Please input a valid email address'}]}
@@ -71,6 +76,7 @@ export default function Signup({
           </Form.Item>
 
           <Form.Item 
+          style={{width:500}}
             name='password' 
             label='Contraseña:' 
             rules={[{required: true, message: 'Please input a password'}]}
@@ -79,32 +85,36 @@ export default function Signup({
           </Form.Item>
 
           <Form.Item 
+          style={{width:500}}
             name='password2' 
             label='Confirmar contraseña:' 
             rules={[{required: true, message: 'Please confirm password'}]}
           >
             <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
           </Form.Item>
-
-          <Form.Item {...tailLayout}> 
-          <Button style={{backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}}
+          
+          <Form.Item 
+          {...tailLayout}> 
+          <Button style={{width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}}
           type="primary" block htmlType="submit">
             Signup
           </Button>
           </Form.Item> 
-
         </Form>
-        <Form.Item {...tailLayout}> 
+        
+        <Form.Item style={{width:480}} {...tailLayout}> 
         <Divider>
           Or
         </Divider>
         </Form.Item>
         <Form.Item {...tailLayout}> 
         <a href={googleUrl}>
-          <Button style={{border:'solid', borderWidth: 2, borderRadius: 4}} 
+          <Button style={{width:250, border:'solid', borderWidth: 2, borderRadius: 4}} 
           danger block>Signup with Google</Button>
         </a>
         </Form.Item>
+      
     </div>
+   
   );
 }
