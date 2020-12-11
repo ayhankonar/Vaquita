@@ -119,7 +119,7 @@ const marks = {
        <h1>Crea tu rifa!</h1>
        <br/>
     <Form form={form} style={{width: 550, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: '40px'}} theme="dark" layout="vertical" onFinish={handleSubmit}>
-      <Form.Item name="imageProduct" label="Image:">
+      <Form.Item name="imageProduct" label="Imagen:">
         <Upload
           name="image"
           showUploadList={false}
@@ -131,20 +131,20 @@ const marks = {
       <Form.Item
       style ={{color:'white'}}
       name="title" 
-      label="Title:"
+      label="Título:"
       rules={[{required: true, message: 'Please input a title'}]}>
         <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
 
       <Form.Item name="productName" 
-      label="Product Name:"
+      label="Nombre del producto:"
       rules={[{required: true, message: 'Please input a product name'}]}>
         <Input style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}} />
       </Form.Item>
 
 
       <Form.Item name="description" 
-      label="Description:" 
+      label="Descripcion:" 
       rules={[{required: true, message: 'Please input a description'}]}>
         <Input.TextArea showCount maxLength={120} rows={4} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px',  backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
@@ -152,7 +152,7 @@ const marks = {
       <Divider></Divider>
 
       <Form.Item>
-        <Form.Item name="productPrice" label="Product Price:" rules={[{validator: checkPrice}, {type: 'number', message: 'Please input a valid number'},{required: true, message: 'Please input a product price'}]}>
+        <Form.Item name="productPrice" label="Precio del producto:" rules={[{validator: checkPrice}, {type: 'number', message: 'Please input a valid number'},{required: true, message: 'Please input a product price'}]}>
           <InputNumber disabled={confirmed} onChange={productPriceFn} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/> 
         </Form.Item>
         {!confirmed ?
@@ -165,7 +165,7 @@ const marks = {
         <Form.Item>
 
           <Divider></Divider>
-          <Typography.Paragraph>Nuestra mision es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Asi que limitamos los precios de cada boleto hast $100USD</Typography.Paragraph>
+          <Typography.Paragraph>Nuestra mision es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Asi que limitamos los precios de cada boleto hasta $100USD</Typography.Paragraph>
 
           <Slider 
             style={{margin: "20px", marginBottom: "30px"}}
@@ -178,13 +178,13 @@ const marks = {
           />
 
           <Form.Item name="availableTickets" 
-          label="Available Tickets:"
+          label="Tickets disponibles:"
           rules={[{required: true, message: 'Please input a Available Tickets'}]}>
             <InputNumber onChange={availableTixChange} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/>
           </Form.Item>  
 
           <Form.Item name="ticketPrice" 
-          label="Ticket Price:"
+          label="Precio del ticket:"
           rules={[{required: true, message: 'Please input a Ticket Price'}]}>
             {/* <InputNumber  style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px', backgroundColor:'#F2F2F2'}}/> */}
             <InputNumber min={1} max={100} disabled={true}/>
@@ -194,7 +194,7 @@ const marks = {
       <Divider></Divider>
       
      
-      <Button style={{borderRadius: 100, width: 200, border: 'solid', borderColor: '#bedbbb', color: 'white', backgroundColor: '#bedbbb'}} type="primary" size="middle" htmlType="submit">Create</Button>
+      <Button style={{width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 8}} type="primary" size="middle" htmlType="submit">Create</Button>
 
     </Form>
     </div>
@@ -202,3 +202,4 @@ const marks = {
 }
 
 export default RifaForm
+
