@@ -77,7 +77,7 @@ const RifaDetails = ({
     <Card
         style={{width: 500, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', border:'solid', borderWidth: 2, borderColor:'#0c7489', borderRadius: 4}}
         type="inner"
-        title={title}
+        title={<h1>{title}</h1>}
         cover={
           <img
           style={{ width: 300, flex:1, alignSelf:'center'}}
@@ -89,9 +89,11 @@ const RifaDetails = ({
         <center >
             
             <Title level={4}>{productName}</Title>
-            <Text>Description: {description}</Text><br/>
-            <Text> Ticket Price: {productPrice}</Text><br/>
-            <Text> Available Tickets: {availableTickets}</Text><br/>
+            <Text>Description: {description}</Text>
+            <br/>
+            <br/>
+            <Text style={{fontFamily:'Averta-Bold'}}> Ticket Price: {productPrice}</Text><br/>
+            <Text style={{fontFamily:'Averta-Bold'}}> Available Tickets: {availableTickets}</Text><br/>
         {user ? (
           <>
             {deUsuario ? (

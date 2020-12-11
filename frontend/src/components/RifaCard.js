@@ -1,49 +1,35 @@
 import React from 'react'
-// import { Card, Avatar, Typography } from 'antd'
 import { Link } from 'react-router-dom'
+import { Card } from 'antd';
 
-// const { Title } = Typography
-
-import { Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 
 
 function RifaCard({ title, productName, description, imageProduct, _id, availableTickets, ticketPrice }) {
-  // return (
-  //   <Card
-  //     type="inner"
-  //     title={title}
-  //     extra={<Link to={`/rifas/${_id}`}>Details</Link>}
-  //     style={{ marginBottom: '8px' }}
-  //     hoverable>
-  //     <center>
-  //       <Avatar src={imageProduct} style={{ backgroundColor: 'white' }} />
-  //       <Title level={4}>{productName}</Title>
-  //     </center>
-  //     {description}
-  //   </Card>
-  // )
+ 
 
 
   return(
     <Card
-      style={{ border:'solid', borderWidth: '1px', borderColor:'#0c7489', width: 300, height: 300, margin: 50 }}
+      style={{border:'solid', borderWidth: '1px', borderColor:'#0c7489', width: 300, height: 'auto', margin: 50, paddingTop:10, paddingLeft:50, paddingRight:50}}
       cover={
         <img
-        style={{ width: 300}}
+        style={{ width: 200}}
           alt="example"
           src={imageProduct}
         />
       }
+      
       actions={[
-        <Link to={`/rifas/${_id}`}>Details </Link>,
+        <Link
+         style={{display:'flex', justifyContent:'center', alignContent:'flex-end'}}
+         to={`/rifas/${_id}`}>Details </Link>,
       ]}
     >
       <Meta
-        title={title}
+        title={<h4>{title}</h4>}
         description = {`$${ticketPrice} | ${availableTickets} boletos`}
       />
     </Card>
