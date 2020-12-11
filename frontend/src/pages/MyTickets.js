@@ -49,7 +49,7 @@ const MyTickets = () => {
     }, [])
 
     return  (
-        <div>
+        <div style={{margin: "30px"}}>
 
         <h1>Mis Tickets</h1>
         <Collapse bordered={false} defaultActiveKey={['2']}>
