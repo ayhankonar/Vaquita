@@ -12,7 +12,7 @@ function Home() {
     color: '#fff',
     lineHeight: '400px',
     textAlign: 'center',
-    backgroundImage: 'url("./golden-gift-boxes.jpg")',
+    backgroundImage: 'url("./home.png")',
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"
@@ -40,20 +40,11 @@ function Home() {
 
   return  (
     <div style={{margin:"0", padding:"0"}}>
-      <Carousel autoplay>
+
         <div>
-          <h3 style={contentStyle1}>Vaquita. </h3>
+          <h3 style={contentStyle1}></h3>
         </div>
-        <div>
-          <h3 style={contentStyle2}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle1}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle1}>4</h3>
-        </div>
-      </Carousel>
+
       <h1>Buscar </h1>
       <Row style ={{flex: 1, justifyContent: "center" }}
       gutter={[16, 16]} xs={24} sm={24} md={8}>
