@@ -32,7 +32,9 @@ const LayoutApp = ({ children }) => {
           </Menu.Item>
 
           {!user ? <>
-              <Menu.Item key="2">
+              <Menu.Item 
+                style={{color:'white'}}
+                key="2">
                 <Link to="/signup">Signup</Link>
               </Menu.Item>
 

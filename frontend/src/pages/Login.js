@@ -51,6 +51,7 @@ export default function Login({history}){
 
       
         <Form.Item
+        style={{width:500}}
           name='email'
           label='Email:'
           rules={[{required: true, message: 'Please input a valid email address'}]}
@@ -59,6 +60,7 @@ export default function Login({history}){
         </Form.Item>
 
         <Form.Item
+          style={{width:500}}
           name='password'
           label='Password:'
           rules={[{required: true, message: 'Please input a password'}]}
@@ -84,8 +86,10 @@ export default function Login({history}){
           Or
         </Divider>
       </Form.Item>
-      <Form.Item {...tailLayout}>
-      <a href={googleUrl}>
+      <Form.Item 
+       style={{width:500}}      
+      {...tailLayout}>
+      <a href={'http://localhost:3000/auth/google'}>
         <Button style={{border:'solid', borderWidth: 2, borderRadius: 4}} danger block>Login with Google</Button>
       </a>
       </Form.Item>
