@@ -84,9 +84,9 @@ const RifaDetails = ({
             <Text>Descripción: {description}</Text>
             <br/>
             <br/>
-            <Text style={{fontFamily:'Averta-Bold'}}> Valor de producto: ${productPrice}</Text><br/>
-            <Text style={{fontFamily:'Averta-Bold'}}> Precio de Ticket: ${ticketPrice}</Text><br/>
-            <Text style={{fontFamily:'Averta-Bold'}}> Tickets disponibles: {availableTickets}</Text><br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Valor de producto: ${productPrice}</Text><br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Precio de Ticket: ${ticketPrice}</Text><br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Tickets disponibles: {availableTickets}</Text><br/>
         {user ? (
           <>
             {deUsuario ? (
