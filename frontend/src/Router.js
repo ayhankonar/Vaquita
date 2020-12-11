@@ -51,11 +51,6 @@ const Router = () => (
         exact path= "/tickets/mytickets"
         component={MyTickets}
       />
-
-      {/* <Route
-        exact path= "/bought-ticket/:rifaId"
-        component={buyTickets}
-      /> */}
       
       <Route component={NotFound} />
     </Switch>
@@ -64,20 +59,3 @@ const Router = () => (
 );
 
 export default Router;
-
-// import axios from 'axios'
-
-// const baseURL = process.env.NODE_ENV === 'development' ?
-//   'http://localhost:3000/' :
-//   '/'
-
-// const authService = axios.create({
-//   baseURL,
-//   withCredentials: true
-// })
-
-// export const signupFn = userInfo =>
-//   authService.post('/signup', userInfo)
-
-// export const loginFn = userInfo =>
-// authService.post('/login', userInfo)
