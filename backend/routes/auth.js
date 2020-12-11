@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const passport = require('../config/passport');
-const {isAuth} = require ('../middlewares/index')
 
 router.post('/signup', (req, res, next) => {
   const {password, password2} = req.body
@@ -25,13 +24,6 @@ router.get('/logout', (req, res, next) => {
   res.status(200).json({ msg: 'Logged out' });
 });
 
-// router.get('/profile', isAuth, (req, res, next) => {
-//   const {userId}  = req.user._id
-//   User.findById(userId)
-//     .then((user) => res.status(200).json({ user }))
-//     .catch((err) => res.status(500).json({ err }));
-// });
-
 router.get('/auth/google', passport.authenticate('google', {
   scope: [
     "https://www.googleapis.com/auth/userinfo.profile",
@@ -47,15 +39,10 @@ router.post('/auth/google/callback', (req,res,next) => {
     req.login(user, err => {
       if (err) return res.status(500).json({ err })
       return res.redirect(process.env.ENV === 'development' ?
-      //  process.env.FRONTENDPOINT + '/profile/' + user._id : '/profile/' + user._id) 
       process.env.FRONTENDPOINT + '/profile/' : '/profile/') 
-      // return res.redirect(process.env.FRONTENDPOINT + '/profile/' + user._id)
   })
 })(req, res, next)
 })
 
-// function isAuth(req, res, next) {
-//   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
-// }
 
 module.exports = router;

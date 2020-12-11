@@ -12,7 +12,7 @@ const userSchema = new Schema(
     country: String,
     image: {
       type: String,
-      default: './public/images/profile.png'
+      default: './profile.png'
     },
     rifas: [{
       type: Schema.Types.ObjectId,

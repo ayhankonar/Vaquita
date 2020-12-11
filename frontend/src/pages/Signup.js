@@ -5,7 +5,7 @@ import {
   Button,
   Divider,
 } from 'antd'
-// import Myservice from '../services/index'
+
 import {signupFn} from '../services/auth'
 
 const googleUrl = process.env.NODE_ENV === 'development' ?
@@ -17,11 +17,9 @@ export default function Signup({
   const [form] = Form.useForm()
 
   async function signupProcess(values){
-    // await Myservice.signup(values)
-    // console.log(values)
     await signupFn(values)
     history.push('/login')
-    // console.log('user:', values)
+
   }
 
   const layout = {

@@ -12,9 +12,7 @@ exports.getUserRifas = async (req, res) => {
 
 exports.createRifa = async (req, res) => {
   const {
-    // price: ticketPrice,
     ticketPrice,
-    // ticketQuantity: availableTickets,
     availableTickets,
     title,
     description,
@@ -22,8 +20,6 @@ exports.createRifa = async (req, res) => {
     productName,
     imageProduct,
     ownerID
-    // availableTickets,
-    // totalTickets: availableTickets,
     } = req.body
   const { user: { id } } = req
 //   const { productId: product } = req.params
@@ -35,7 +31,6 @@ exports.createRifa = async (req, res) => {
     imageProduct,
     ticketPrice,
     availableTickets,
-    // totalTickets: availableTickets,
     ownerID: id
   })
 
@@ -71,8 +66,6 @@ exports.getRifaDetails = async (req, res) => {
 exports.updateRifa = async (req, res) => {
      const { rifaId } = req.params
      const {
-        // price: ticketPrice,
-        // ticketQuantity: availableTickets,
         ticketPrice,
         availableTickets,
         title,
@@ -80,9 +73,9 @@ exports.updateRifa = async (req, res) => {
         productPrice,
         productName,
         imageProduct,
-        ownerID,
-       
+        ownerID
         } = req.body
+      const { user: { id } } = req
       const updatedRifa = await Rifa.findByIdAndUpdate(rifaId, {
         title,
         description,
@@ -91,8 +84,7 @@ exports.updateRifa = async (req, res) => {
         imageProduct,
         ticketPrice,
         availableTickets,
-        // totalTickets: availableTickets,
-        ownerID,
+        ownerID: id
       }, { new:true })
 
       res.status(200).json(updatedRifa)
@@ -104,7 +96,6 @@ exports.deleteRifa =  async (req, res) => {
     res.status(200).json({ message: 'rifa deleted' })
   }
 
-////////////
 
 exports.checkRifa = async(req,res) => {
   const {rifaId} = req.params
@@ -138,19 +129,18 @@ exports.boughtTicket = async (req, res) => {
   // 4. Agregamos el ticket al user
   await User.findByIdAndUpdate(req.user.id, { $push: { tickets: ticket._id } })
 
- // 5. Si hay 0 tickets, cambiamos la propiedad finished de la rifa a true
- 
- if (rifa.availableTickets === 0) {
-   await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
-   const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
-   //ObjectId de Ticket
-   const ticketWinner = rifa.soldTickets[winnerId]
-   console.log("winner:", ticketWinner)
-   //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
-   await Ticket.findByIdAndUpdate(ticketWinner, { winner: true }, {new: true})
-   //redirigir a la misma vista de end rifas
-   res.status(201).json(ticketWinner)
-   // res.status(403).json({msg: 'No more tickets'})
-  }
-  res.status(200).json(ticket)
+  // 5. Si hay 0 tickets, cambiamos la propiedad finished de la rifa a true
+  if (rifa.availableTickets === 0) {
+    await Rifa.findByIdAndUpdate(rifaId, {finished:true}, {new: true})
+    const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
+    //ObjectId de Ticket
+    const ticketWinner = rifa.soldTickets[winnerId]
+    console.log("winner:", ticketWinner)
+    //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
+    await Ticket.findByIdAndUpdate(ticketWinner, { winner: true }, {new: true})
+    //redirigir a la misma vista de end rifas
+    res.status(201).json(ticketWinner)
+    // res.status(403).json({msg: 'No more tickets'})
+    }
+    res.status(200).json(ticket)
 }

@@ -27,7 +27,7 @@ const LayoutApp = ({ children }) => {
         <Menu style={{backgroundColor: "#8db596"}}  mode="horizontal">
 
           <Menu.Item key="1">
-            <img style ={{width:90}}src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"></img>
+            <img style ={{width:80}}src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"></img>
             <Link to="/" />
           </Menu.Item>
 
@@ -43,9 +43,6 @@ const LayoutApp = ({ children }) => {
                 <Link to="/login">Login</Link>
               </Menu.Item>
             </> : <>
-              <Menu.Item key="2">
-                <Link to="/profile">Perfil</Link>
-              </Menu.Item>
 
               <Menu.Item key="3">
                 <Link to="/new/rifas">Crear Rifa</Link>
@@ -58,6 +55,10 @@ const LayoutApp = ({ children }) => {
               <Menu.Item key="5">
                   <Link to="/tickets/mytickets">Mis Tickets</Link>
                 </Menu.Item>
+
+              <Menu.Item key="2">
+                <Link to="/profile">Perfil</Link>
+              </Menu.Item>
 
               <Menu.Item key="6" onClick={handleLogout}>
                 Logout
@@ -76,7 +77,7 @@ const LayoutApp = ({ children }) => {
       <Content style={{ padding: '50px 0', minHeight: 'calc(100vh - 153.6px)' }}>
         <div className="site-layout-content">{children}</div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Vaquita de la suerte <img style={{width: 40}} src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"/> <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>
+      <Footer style={{ textAlign: 'center' , backgroundColor:'#CEF1D8'}}>Vaquita de la suerte <img style={{width: 40}} src="https://res.cloudinary.com/dj9edroyv/image/upload/v1607624315/Vaquita/p35w19kaw7nigxkluy8m.png"/> <br/> ©2020 Created by Ayhan Konar & Karen Roth</Footer>
     </Layout>
   )
 }

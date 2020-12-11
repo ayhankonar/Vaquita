@@ -7,7 +7,8 @@ import {buyTicket, compareUserAndRifaTix} from '../services/tickets'
 import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
 import {Link} from 'react-router-dom'
-// import { editRifa } from '../services/rifas'
+
+
 const { Title, Text } = Typography
 const RifaDetails = ({
   match: {
@@ -23,7 +24,7 @@ const RifaDetails = ({
   const [change, setChange] = useState(false)
   const [matches, setMatches] = useState(null)
   const [buyable, setBuyable] = useState(null)
-  // let previouslyBought = false
+
   useEffect(() => {
     async function checkIfBought(){
       const {data} = await compareUserAndRifaTix(rifaId)
@@ -43,22 +44,13 @@ const RifaDetails = ({
       }
     getDetails()
   }, [change])
-  // useEffect(() => {
-  //   async function checkRifaUserTix(){
-  //     const {data} = await compareUserAndRifaTix()
-  //     console.log(data, "DATA DE AQUI")
-  //   }
-  //   checkRifaUserTix()
-  // },[])
+
   //PARA VERIFICAR SI EL USUARIO ES DUE~O DE LA RIFA Y MOSTRA BOTONES DIFERENTES
   let deUsuario = false
   if (user && rifa.ownerID === user._id) {
     deUsuario = true
   }
-  //SUPESTAMENTE PARA PASAR Y ACTUALIZAR EL FORMULARIO PERO NO ME FUNCIONA. 
-  // function editRifa(rifas){
-  //   setRifa([...rifa,rifas])
-  // }
+
   
   
   //findbyidandupdate with patch
@@ -126,7 +118,6 @@ const RifaDetails = ({
          
         
         </center>
-        {/* <Link></Link> */}
         { prueba &&       
           <RifaEditForm {...rifa} />
         }
@@ -134,7 +125,6 @@ const RifaDetails = ({
         
     </Card>
     ):(
-      // <p>No hay tickets disponibles</p>
       <Skeleton active />
     )
   }
