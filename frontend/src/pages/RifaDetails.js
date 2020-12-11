@@ -80,15 +80,24 @@ const RifaDetails = ({
   const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
 
   return (
+    <div className="rifa-details">
     <>
     {title ? (
+      
     <Card
-        style={{width:400, flex:1, justifyContent:'center'}}
+        style={{width: 500, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', border:'solid', borderWidth: 2, borderColor:'#0c7489', borderRadius: 4}}
         type="inner"
         title={title}
+        cover={
+          <img
+          style={{ width: 300, flex:1, alignSelf:'center'}}
+            alt="example"
+            src={imageProduct}
+          />
+        }
       >
-        <center>
-            <Avatar src={imageProduct} style={{ backgroundColor: 'white' }} />
+        <center >
+            
             <Title level={4}>{productName}</Title>
             <Text>Description: {description}</Text><br/>
             <Text> Ticket Price: {productPrice}</Text><br/>
@@ -105,9 +114,9 @@ const RifaDetails = ({
             ): (
               <>
                 {buyable ? (
-                  <Button style={{borderRadius:100, border:'solid',color:'#bedbbb', margin: 20}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
+                  <Button style={{margin: 20, color:'white', width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}} onClick={()=> buyTicketFn()}>Comprar Boleto</Button>
                 ) : (
-                  <Button style={{borderRadius:100, border:'solid',color:'#bedbbb'}} disabled>Comprar Boleto</Button>
+                  <Button style={{margin: 20, color:'white', width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 4}} disabled>Comprar Boleto</Button>
                 )}
               </>
             )}
@@ -141,7 +150,8 @@ const RifaDetails = ({
       <Skeleton active />
     )
   }
-   </>) 
+   </>
+   </div>) 
  
 }
 

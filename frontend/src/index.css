@@ -41,15 +41,7 @@ code {
 }
 
 /*Login*/
-/* .form-login{
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-self: center;
-} */
-
 .login {
-
   width: 1300px;
   height: 500px;
   margin: 30px;
@@ -68,11 +60,23 @@ code {
 .signup {
   width: 1300px;
   height: 500px;
-  margin: 50px;
+  margin: 20px;
+  margin-top: 80px ;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   align-items: center;
-  /*align-items:center; */
 }
+
+
+/*RifaDetails*/
+.rifa-details{
+   display:flex;
+   justify-content: center;
+   margin-top:50px;
+}
+
+
+
+

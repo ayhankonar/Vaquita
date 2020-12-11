@@ -33,13 +33,12 @@ function RifaCard({ title, productName, description, imageProduct, _id, availabl
       style={{ width: 300, height: 300, margin: 50 }}
       cover={
         <img
-        style={{ width: 300, height: 200 }}
+        style={{ width: 300}}
           alt="example"
           src={imageProduct}
         />
       }
       actions={[
-
         <Link to={`/rifas/${_id}`}>Details </Link>,
       ]}
     >

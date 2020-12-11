@@ -58,7 +58,7 @@ export default function Login({history}){
         <Form.Item
           style={{width:500}}
           name='password'
-          label='Password:'
+          label='Contraseña:'
           rules={[{required: true, message: 'Please input a password'}]}
         >
           <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>
