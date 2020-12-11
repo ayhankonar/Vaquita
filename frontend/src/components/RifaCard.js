@@ -14,9 +14,9 @@ function RifaCard({ title, productName, description, imageProduct, _id, availabl
   return(
     <Card
       style={{
-        border:'solid', 
-        borderWidth: '1px', 
-        borderColor:'#0c7489', 
+        // border:'solid', 
+        // borderWidth: '1px', 
+        // borderColor:'#0c7489', 
         width: 300, 
         height: 'auto', 
         margin: 50
@@ -28,7 +28,7 @@ function RifaCard({ title, productName, description, imageProduct, _id, availabl
         <div 
           style={{
             width: '100%', 
-            border: '1px solid #0c7489',
+            // border: '1px solid #0c7489',
             height: '200px', 
             position: 'relative',
             overflow: 'hidden',

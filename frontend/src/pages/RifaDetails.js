@@ -60,7 +60,7 @@ const RifaDetails = ({
     setChange(!change)
     setBuyable(false)
   }
-  const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
+  const { title, imageProduct, description, productName, productPrice, availableTickets, ticketPrice } = rifa
   return (
     <div className="rifa-details">
     <>
@@ -81,11 +81,12 @@ const RifaDetails = ({
         <center >
             
             <Title level={4}>{productName}</Title>
-            <Text>Description: {description}</Text>
+            <Text>Descripción: {description}</Text>
             <br/>
             <br/>
-            <Text style={{fontFamily:'Averta-Bold'}}> Ticket Price: {productPrice}</Text><br/>
-            <Text style={{fontFamily:'Averta-Bold'}}> Available Tickets: {availableTickets}</Text><br/>
+            <Text style={{fontFamily:'Averta-Bold'}}> Valor de producto: ${productPrice}</Text><br/>
+            <Text style={{fontFamily:'Averta-Bold'}}> Precio de Ticket: ${ticketPrice}</Text><br/>
+            <Text style={{fontFamily:'Averta-Bold'}}> Tickets disponibles: {availableTickets}</Text><br/>
         {user ? (
           <>
             {deUsuario ? (

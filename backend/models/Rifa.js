@@ -12,7 +12,7 @@ const rifaSchema = new Schema(
     productName: String,
     imageProduct: {
         type: String,
-        default: "https://piotrkowalski.pw/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png"
+        default: "https://res.cloudinary.com/dj9edroyv/image/upload/v1607702415/Vaquita/jswo1h6qtpsajcrvxhax.png"
     },
     availableTickets: {
       type: Number,
