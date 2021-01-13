@@ -28,7 +28,6 @@ const RifaDetails = ({
   useEffect(() => {
     async function checkIfBought(){
       const {data} = await compareUserAndRifaTix(rifaId)
-      console.log(data)
       setBuyable(!data)
       
     }
@@ -39,7 +38,6 @@ const RifaDetails = ({
   useEffect(() => {
     async function getDetails() {
       const { data } = await getRifaDetails(rifaId)
-      //  console.log(data)
         setRifa(data);
       }
     getDetails()
@@ -51,11 +49,8 @@ const RifaDetails = ({
     deUsuario = true
   }
 
-  
-  
   //findbyidandupdate with patch
   async function buyTicketFn(){
-    console.log(rifaId)
     await buyTicket(rifaId)
     setChange(!change)
     setBuyable(false)
@@ -116,13 +111,11 @@ const RifaDetails = ({
             </Link> 
          </>
         )}
-         
         
         </center>
         { prueba &&       
           <RifaEditForm {...rifa} />
         }
-        
         
     </Card>
     ):(

@@ -25,7 +25,6 @@ export default function ProfileEditForm({history}) {
   const [loading, setLoading] = useState(null)
 
   async function handleSubmit(values) {
-    console.log(values)
 
     const editUser = {
       ...values,
@@ -34,7 +33,6 @@ export default function ProfileEditForm({history}) {
       rifas: user.rifas,
       tickets: user.tickets
     }
-    console.log('FORM VALUES: ', {editUser})
 
     const { data: updatedUser } = await userProfileEdit(user._id, editUser);
     form.resetFields()

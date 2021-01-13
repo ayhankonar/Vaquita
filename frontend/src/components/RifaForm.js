@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Slider, Form, Button, Input, InputNumber, Select, Col, Row, Upload , Divider, Typography} from 'antd'
+import { Slider, Form, Button, Input, InputNumber, Upload , Divider, Typography} from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { createRifa } from '../services/rifas'
 import axios from 'axios'
@@ -22,11 +22,8 @@ const RifaForm = ({ addRifa }) => {
     const rifa = {
       ...values,
       imageProduct: img,
-      // ownerID: user._id
     }
-    console.log(rifa)
     const { data: newRifa } = await createRifa(rifa);
-    console.log (newRifa)
     addRifa(newRifa);
     form.resetFields()
     setImg(null)
@@ -54,7 +51,6 @@ const RifaForm = ({ addRifa }) => {
 
   function productPriceFn(value){
     setTotalPrice(value)
-    console.log('TOTAL PRICE: ', value)
     if (totalPrice > 0 && typeof totalPrice == 'number'){
       setDisableButton(false)
     } else {

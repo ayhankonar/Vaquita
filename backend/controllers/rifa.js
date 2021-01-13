@@ -130,7 +130,6 @@ exports.boughtTicket = async (req, res) => {
     const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
     //ObjectId de Ticket
     const ticketWinner = rifa.soldTickets[winnerId]
-    console.log("winner:", ticketWinner)
     //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
     await Ticket.findByIdAndUpdate(ticketWinner, { winner: true }, {new: true})
     //redirigir a la misma vista de end rifas

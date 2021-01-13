@@ -33,7 +33,6 @@ export default function EditRifa({
     getDetails()
   }, [])
 
-  console.log('RIFA CHECK 2', rifa)
 
   async function handleSubmit(values) {
 

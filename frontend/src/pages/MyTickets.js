@@ -17,7 +17,6 @@ const MyTickets = () => {
     useEffect(() => {
         async function getRifas(){
             const { data } = await getRifafromTix()
-            console.log('NOT FINISHED', data)
             setRifas(data)
         }
 
@@ -40,7 +39,6 @@ const MyTickets = () => {
     useEffect(() => {
         async function getLoserRifas(){
             const { data } = await getRifafromLostTix()
-            console.log('LOSER RIFAS', data)
             setLostTix(data)
         }
 
