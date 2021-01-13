@@ -24,25 +24,4 @@ router.get('/logout', (req, res, next) => {
   res.status(200).json({ msg: 'Logged out' });
 });
 
-router.get('/auth/google', passport.authenticate('google', {
-  scope: [
-    "https://www.googleapis.com/auth/userinfo.profile",
-    "https://www.googleapis.com/auth/userinfo.email"
-  ]
-}))
-
-router.post('/auth/google/callback', (req,res,next) => {
-  passport.authenticate('google', (err, user, errDetails)=> {
-    if (err) return res.status(500).json({ err, errDetails })
-    if (!user) return res.status(401).json({ err, errDetails })
-
-    req.login(user, err => {
-      if (err) return res.status(500).json({ err })
-      return res.redirect(process.env.ENV === 'development' ?
-      process.env.FRONTENDPOINT + '/profile/' : '/profile/') 
-  })
-})(req, res, next)
-})
-
-
 module.exports = router;

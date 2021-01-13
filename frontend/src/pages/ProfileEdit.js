@@ -74,7 +74,6 @@ export default function ProfileEditForm({history}) {
           userName: user.userName,
           firstName: user.firstName,
           lastName: user.lastName,
-          googleID: user.googleID,
           city: user.city,
           country: user.country,
           image: user.image
