@@ -12,7 +12,7 @@ const userSchema = new Schema(
     country: String,
     image: {
       type: String,
-      default: './public/images/profile.png'
+      default: 'https://res.cloudinary.com/dj9edroyv/image/upload/v1607702436/Vaquita/lxvo7wzoriugvszkl2pj.png'
     },
     rifas: [{
       type: Schema.Types.ObjectId,

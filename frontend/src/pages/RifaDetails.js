@@ -7,7 +7,8 @@ import {buyTicket, compareUserAndRifaTix} from '../services/tickets'
 import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
 import {Link} from 'react-router-dom'
-// import { editRifa } from '../services/rifas'
+
+
 const { Title, Text } = Typography
 const RifaDetails = ({
   match: {
@@ -23,7 +24,7 @@ const RifaDetails = ({
   const [change, setChange] = useState(false)
   const [matches, setMatches] = useState(null)
   const [buyable, setBuyable] = useState(null)
-  // let previouslyBought = false
+
   useEffect(() => {
     async function checkIfBought(){
       const {data} = await compareUserAndRifaTix(rifaId)
@@ -43,22 +44,13 @@ const RifaDetails = ({
       }
     getDetails()
   }, [change])
-  // useEffect(() => {
-  //   async function checkRifaUserTix(){
-  //     const {data} = await compareUserAndRifaTix()
-  //     console.log(data, "DATA DE AQUI")
-  //   }
-  //   checkRifaUserTix()
-  // },[])
+
   //PARA VERIFICAR SI EL USUARIO ES DUE~O DE LA RIFA Y MOSTRA BOTONES DIFERENTES
   let deUsuario = false
   if (user && rifa.ownerID === user._id) {
     deUsuario = true
   }
-  //SUPESTAMENTE PARA PASAR Y ACTUALIZAR EL FORMULARIO PERO NO ME FUNCIONA. 
-  // function editRifa(rifas){
-  //   setRifa([...rifa,rifas])
-  // }
+
   
   
   //findbyidandupdate with patch
@@ -68,7 +60,7 @@ const RifaDetails = ({
     setChange(!change)
     setBuyable(false)
   }
-  const { title, imageProduct, description, productName, productPrice, availableTickets } = rifa
+  const { title, imageProduct, description, productName, productPrice, availableTickets, ticketPrice } = rifa
   return (
     <div className="rifa-details">
     <>
@@ -77,7 +69,7 @@ const RifaDetails = ({
     <Card
         style={{width: 500, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', border:'solid', borderWidth: 2, borderColor:'#0c7489', borderRadius: 4}}
         type="inner"
-        title={title}
+        title={<h1>{title}</h1>}
         cover={
           <img
           style={{ width: 300, flex:1, alignSelf:'center'}}
@@ -89,9 +81,12 @@ const RifaDetails = ({
         <center >
             
             <Title level={4}>{productName}</Title>
-            <Text>Description: {description}</Text><br/>
-            <Text> Ticket Price: {productPrice}</Text><br/>
-            <Text> Available Tickets: {availableTickets}</Text><br/>
+            <Text>Descripción: {description}</Text>
+            <br/>
+            <br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Valor de producto: ${productPrice}</Text><br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Precio de Ticket: ${ticketPrice}</Text><br/>
+            <Text style={{fontFamily: 'Montserrat', fontWeight:'700'}}> Tickets disponibles: {availableTickets}</Text><br/>
         {user ? (
           <>
             {deUsuario ? (
@@ -124,7 +119,6 @@ const RifaDetails = ({
          
         
         </center>
-        {/* <Link></Link> */}
         { prueba &&       
           <RifaEditForm {...rifa} />
         }
@@ -132,7 +126,6 @@ const RifaDetails = ({
         
     </Card>
     ):(
-      // <p>No hay tickets disponibles</p>
       <Skeleton active />
     )
   }

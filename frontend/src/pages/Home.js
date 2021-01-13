@@ -34,10 +34,6 @@ function Home() {
     getRifas()
   }, [])
 
-  // rifas.forEach(rifa => {
-  //   rifasFiltered[rifa.status] = [...rifasFiltered[rifa.status], rifa]
-  // })
-
   return  (
     <div style={{margin:"0", padding:"0"}}>
 

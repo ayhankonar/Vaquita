@@ -7,14 +7,15 @@ import axios from 'axios'
 const cloudinaryAPI = 'https://api.cloudinary.com/v1_1/dj9edroyv/image/upload'
 
 const RifaForm = ({ addRifa }) => {
-  // const { user } = useContextInfo()
   const [form] = Form.useForm()
   const [img, setImg] = useState(null)
   const [loading, setLoading] = useState(null)
   const [sliderValue, setSliderValue] = useState(1)
-  const [numTix, setNumTix] = useState(1)
   const [totalPrice, setTotalPrice] = useState(null)
   const [change, setChange] = useState(false)
+  const [maxTix, setMaxTix] = useState(null)
+  const [minTix, setMinTix] = useState(null)
+  const [disableButton, setDisableButton] = useState(true)
 
   async function handleSubmit(values) {
 
@@ -51,12 +52,6 @@ const RifaForm = ({ addRifa }) => {
     </div>
   );
 
-  
-
-  const [maxTix, setMaxTix] = useState(null)
-  const [minTix, setMinTix] = useState(null)
-  const [disableButton, setDisableButton] = useState(true)
-
   function productPriceFn(value){
     setTotalPrice(value)
     console.log('TOTAL PRICE: ', value)
@@ -68,7 +63,6 @@ const RifaForm = ({ addRifa }) => {
   }
   
   const checkPrice = (rule) => {
-    // console.log(value.productPrice)
     if (totalPrice > 0) {
       setDisableButton(false)
       return Promise.resolve('');
@@ -108,16 +102,14 @@ const RifaForm = ({ addRifa }) => {
     updateMaxMinTix()
 }, [change])
 
-const marks = {
-  1: `$1 USD`,
-  100: `$100 USD`
-}
+  const marks = {
+    1: `$1 USD`,
+    100: `$100 USD`
+  }
 
   return (
 
     <div className="RifaForm">
-       <h1>Crea tu rifa!</h1>
-       <br/>
     <Form form={form} style={{width: 550, backgroundColor:'white', border:'solid', borderWidth: '1px', borderColor:'#0c7489', borderRadius: 10, padding: '40px'}} theme="dark" layout="vertical" onFinish={handleSubmit}>
       <Form.Item name="imageProduct" label="Imagen:">
         <Upload
@@ -144,7 +136,7 @@ const marks = {
 
 
       <Form.Item name="description" 
-      label="Descripcion:" 
+      label="Descripción:" 
       rules={[{required: true, message: 'Please input a description'}]}>
         <Input.TextArea showCount maxLength={120} rows={4} style ={{ border:'solid', borderColor:'#0c7489', borderRadius: 8, borderWidth: '2px',  backgroundColor:'#F2F2F2'}}/>
       </Form.Item>
@@ -165,7 +157,7 @@ const marks = {
         <Form.Item>
 
           <Divider></Divider>
-          <Typography.Paragraph>Nuestra mision es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Asi que limitamos los precios de cada boleto hasta $100USD</Typography.Paragraph>
+          <Typography.Paragraph>Nuestra misión es que todos usuarios tengan oportunidad igual de participar en nuestras rifas. Así que limitamos los precios de cada boleto hasta $100 USD</Typography.Paragraph>
 
           <Slider 
             style={{margin: "20px", marginBottom: "30px"}}
@@ -194,7 +186,7 @@ const marks = {
       <Divider></Divider>
       
      
-      <Button style={{width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 8}} type="primary" size="middle" htmlType="submit">Create</Button>
+      <Button style={{width:250, backgroundColor: '#0c7489', border: 'solid', borderColor: '#0c7489', borderRadius: 8}} type="primary" size="middle" htmlType="submit">Crear</Button>
 
     </Form>
     </div>

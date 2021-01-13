@@ -10,7 +10,6 @@ import {
 import { loginFn } from '../services/auth'
 import { useContextInfo } from '../hooks/context'
 
-// const {Title} = Typography
 
 const googleUrl = process.env.NODE_ENV === 'development' ?
   "http://localhost:3000/auth/google" : '/auth/google'
@@ -62,7 +61,7 @@ export default function Login({history}){
         <Form.Item
           style={{width:500}}
           name='password'
-          label='Contraseña:'
+          label='Password:'
           rules={[{required: true, message: 'Please input a password'}]}
         >
           <Input.Password style={{ border: 'solid', borderColor: '#0c7489', borderWidth:'2px', borderRadius: 4}}/>

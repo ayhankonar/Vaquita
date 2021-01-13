@@ -31,7 +31,6 @@ export default function EditRifa({
     }
 
     getDetails()
-  // }, [rifaId])
   }, [])
 
   console.log('RIFA CHECK 2', rifa)
@@ -42,10 +41,6 @@ export default function EditRifa({
       ...values,
       imageProduct: img,
     }
-
-    console.log (editedRifaInput)
-    // const { data: editedRifa } = await editRifa(editedRifaInput);
-    // console.log (editedRifa)
     form.resetFields()
     setImg(null)
     history.push(`/rifas/myrifas${rifaId}`)
@@ -70,16 +65,6 @@ export default function EditRifa({
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-
-  //   title,
-  //   description,
-  //   productPrice,
-  //   productName,
-  //   imageProduct,
-  //   ticketPrice,
-  //   availableTickets,
-  //   totalTickets: availableTickets,
-  //   ownerID
 
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit} initialValues={

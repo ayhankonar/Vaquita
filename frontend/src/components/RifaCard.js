@@ -1,49 +1,66 @@
 import React from 'react'
-// import { Card, Avatar, Typography } from 'antd'
 import { Link } from 'react-router-dom'
+import { Card } from 'antd';
 
-// const { Title } = Typography
-
-import { Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 
 
 function RifaCard({ title, productName, description, imageProduct, _id, availableTickets, ticketPrice }) {
-  // return (
-  //   <Card
-  //     type="inner"
-  //     title={title}
-  //     extra={<Link to={`/rifas/${_id}`}>Details</Link>}
-  //     style={{ marginBottom: '8px' }}
-  //     hoverable>
-  //     <center>
-  //       <Avatar src={imageProduct} style={{ backgroundColor: 'white' }} />
-  //       <Title level={4}>{productName}</Title>
-  //     </center>
-  //     {description}
-  //   </Card>
-  // )
+ 
 
 
   return(
     <Card
-      style={{ border:'solid', borderWidth: '1px', borderColor:'#0c7489', width: 300, height: 300, margin: 50 }}
+      style={{
+        // border:'solid', 
+        // borderWidth: '1px', 
+        // borderColor:'#0c7489', 
+        width: 300, 
+        height: 'auto', 
+        margin: 50
+        // paddingTop:10, 
+        // paddingLeft:50, 
+        // paddingRight:50
+      }}
       cover={
-        <img
-        style={{ width: 300}}
-          alt="example"
-          src={imageProduct}
-        />
+        <div 
+          style={{
+            width: '100%', 
+            // border: '1px solid #0c7489',
+            height: '200px', 
+            position: 'relative',
+            overflow: 'hidden',
+            padding: "2px"
+          }}
+        >
+          <img
+            style={{ 
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              top: 0,
+              bottom: 0,
+              right: 0,
+              left: 0
+            }}
+            alt="example"
+            src={imageProduct}
+          />
+        </div>
+        
       }
+      
       actions={[
-        <Link to={`/rifas/${_id}`}>Details </Link>,
+        <Link
+         style={{display:'flex', justifyContent:'center', alignContent:'flex-end'}}
+         to={`/rifas/${_id}`}>Detalles</Link>,
       ]}
     >
       <Meta
-        title={title}
+        title={<h4>{title}</h4>}
         description = {`$${ticketPrice} | ${availableTickets} boletos`}
       />
     </Card>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { getUsrRifas } from '../services/rifas'
 import {Link} from 'react-router-dom'
-import RifaCardEdit from '../components/RifaCardEdit'
+import RifaCard from '../components/RifaCard'
 import { useContextInfo } from '../hooks/context'
 import { Row, Col, Typography, Card, Button, Modal } from 'antd'
 const { Title, Text } = Typography
@@ -21,11 +21,11 @@ const MyRifas = () => {
     }, [])
    
     return user ? (
-      <div>
-        <h1>Mis Rifas</h1>
+      <div style={{padding: '25px 0 0 0'}}>
+        <h1 style={{fontSize: '3em'}}>Mis Rifas</h1>
         <Row style ={{flex: 1, justifyContent: "center" }} 
         gutter={[16, 16]} xs={24} sm={24} md={8}>
-            {rifas.map(rifa => <RifaCardEdit
+            {rifas.map(rifa => <RifaCard
             key={rifa.id}
             {...rifa}/>)}
         </Row>
