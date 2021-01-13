@@ -8,8 +8,7 @@ import {
 
 import {signupFn} from '../services/auth'
 
-const googleUrl = process.env.NODE_ENV === 'development' ?
-  "http://localhost:3000/auth/google" : '/auth/google'
+
 
 export default function Signup({
   history
@@ -99,18 +98,6 @@ export default function Signup({
           </Button>
           </Form.Item> 
         </Form>
-        
-        <Form.Item style={{width:480}} {...tailLayout}> 
-        <Divider>
-          Or
-        </Divider>
-        </Form.Item>
-        <Form.Item {...tailLayout}> 
-        <a href={googleUrl}>
-          <Button style={{width:250, border:'solid', borderWidth: 2, borderRadius: 4}} 
-          danger block>Signup with Google</Button>
-        </a>
-        </Form.Item>
       
     </div>
    

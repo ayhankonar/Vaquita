@@ -25,7 +25,6 @@ export const Provider = props => {
 
       const {data} = await userProfileFn(user)
       setCtxUser(data)
-      console.log(data)
 
     }
     profile()

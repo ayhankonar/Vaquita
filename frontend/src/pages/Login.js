@@ -11,8 +11,6 @@ import { loginFn } from '../services/auth'
 import { useContextInfo } from '../hooks/context'
 
 
-const googleUrl = process.env.NODE_ENV === 'development' ?
-  "http://localhost:3000/auth/google" : '/auth/google'
 
 
 export default function Login({history}){
@@ -79,21 +77,6 @@ export default function Login({history}){
         </Form.Item>
       </Form>
       </div>
-      <div>
-      <Form.Item {...tailLayout}>
-        <Divider>
-          Or
-        </Divider>
-      </Form.Item>
-      <Form.Item 
-       style={{width:500}}      
-      {...tailLayout}>
-      <a href={'http://localhost:3000/auth/google'}>
-        <Button style={{border:'solid', borderWidth: 2, borderRadius: 4}} danger block>Login with Google</Button>
-      </a>
-      </Form.Item>
-      </div>
-
   </div>
   )
 }

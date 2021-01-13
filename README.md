@@ -12,8 +12,6 @@ The name Vaquita ("little cow") comes from "hacer una vaca" (lit. "make a cow"),
 - CLOUDINARY_CLOUD_NAME= name of cloudinary cloud account
 - CLOUDINARY_API_KEY = key for cloudinary cloud account
 - CLOUDINARY_API_SECRET = secret for cloudinary cloud account
-- GOOGLE_ID = Google ID
-- GOOGLE_SECRET = Google secret
 - DB= MongoDB Database address with password and name
 - MP_TOKEN= MercadoPago token
 

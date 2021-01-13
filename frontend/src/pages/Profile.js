@@ -16,14 +16,12 @@ const { Title, Paragraph, Text } = Typography;
 
 export default function Profile() {
   const {user}  = useContextInfo()
-  console.log(user)
   const [profile, setProfile] = useState({})
 
   useEffect(() => {
     async function getProfile() {
       const { data } = await userProfileFn(user?._id)
       setProfile(data)
-      console.log(data)
     }
 
     getProfile()

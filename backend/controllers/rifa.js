@@ -22,7 +22,6 @@ exports.createRifa = async (req, res) => {
     ownerID
     } = req.body
   const { user: { id } } = req
-//   const { productId: product } = req.params
   const newRifa = await Rifa.create({
     title,
     description,
@@ -35,8 +34,6 @@ exports.createRifa = async (req, res) => {
   })
 
   await User.findByIdAndUpdate(id, { $push: { rifas : newRifa._id } })
-//   await Product.findByIdAndUpdate(product, { valid: true })
-///no estoy segura de esto///
   res.status(201).json(newRifa)
 }
 
@@ -101,7 +98,6 @@ exports.checkRifa = async(req,res) => {
   const {rifaId} = req.params
   const { user: { id } } = req
   const { soldTickets } = await Rifa.findById(rifaId).populate('soldTickets')
-  // const { tickets } = await User.findById(id).populate('tickets')
   
   if(soldTickets.find(tix =>tix.owner == id)){
     res.status(200).json(true)
@@ -122,7 +118,6 @@ exports.boughtTicket = async (req, res) => {
   // 2. restar un ticket de la rifa
   // 3. Agregar el ticket a los tickets vendidos de la rifa
   rifa.availableTickets--
-  console.log(rifa.availableTickets, "AVAILABLE TICKETS")
   rifa.soldTickets.push(ticket._id)
   
   await rifa.save()
@@ -135,12 +130,10 @@ exports.boughtTicket = async (req, res) => {
     const winnerId = Math.floor(Math.random() * rifa.soldTickets.length)
     //ObjectId de Ticket
     const ticketWinner = rifa.soldTickets[winnerId]
-    console.log("winner:", ticketWinner)
     //cambiar la propiedad winner del ticket seleccionado de forma aleatoria por true
     await Ticket.findByIdAndUpdate(ticketWinner, { winner: true }, {new: true})
     //redirigir a la misma vista de end rifas
     res.status(201).json(ticketWinner)
-    // res.status(403).json({msg: 'No more tickets'})
     }
     res.status(200).json(ticket)
 }
